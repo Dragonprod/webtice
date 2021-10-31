@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+#  webtice-server:
+#    container_name: webtice-server
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#    image: webtice-server
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - webtice-db
+
+  webtice-db:
+    image: postgres:12.2-alpine
+    restart: "no"
+    container_name: webtice-db
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "5432:5432"
+    volumes:
+      - webtice-postgres-db:/var/lib/postgresql
+
+  webtice-db-admin:
+    image: dpage/pgadmin4
+    container_name: webtice-db-admin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${ADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${ADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+
+volumes:
+  webtice-postgres-db:
