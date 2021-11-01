@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/Menu.module.css";
 import styles2 from "../styles/Tags.module.css";
 import logo from "../assets/logo.svg";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -16,11 +16,11 @@ import { tagsAndProperties } from "../pages/ReferenceBookPage.js";
 
 export default function ReferenceBookMenu() {
   return (
-    <Router>
+    <>
       <header className={styles.headerBackground}>
         <Link className={styles.navLogoRef} to="/">
           <img className={styles.menuLogo} src={logo} alt="Логотип" />
-          <span className={styles.logoName}>Webtice</span>
+          {/* <span className={styles.logoName}>Webtice</span> */}
         </Link>
         <input type="checkbox" name="menu" id={styles.check} />
         <div id="menuBtn" className={styles.menuBtn}>
@@ -37,9 +37,6 @@ export default function ReferenceBookMenu() {
               className={styles.menuLink}
             >
               GitHub
-            </a>
-            <a href="/-Sp1" className={styles.menuLink}>
-              Веб-справочник
             </a>
           </div>
 
@@ -95,6 +92,6 @@ export default function ReferenceBookMenu() {
           </div>
         </nav>
       </header>
-    </Router>
+    </>
   );
 }
