@@ -1,0 +1,132 @@
+/* ========== Common Settings ==========*/
+#about,
+#handbook,
+#coding,
+#exam {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.themeTitle {
+  font-size: var(--theme-title-size);
+}
+.contentContainer {
+  padding: 2em 1em;
+  max-width: 1050px;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  gap: 20px;
+}
+.sectionImg {
+  /* grid-column: span 7; */
+}
+.textContainer {
+  /* grid-column: 9 / span 4; */
+}
+
+/* ========== Hero Section ==========*/
+#hero {
+  padding: 7em 1em 2em 1em;
+}
+.heroContentContainer {
+  text-align: center;
+  display: grid;
+  grid-auto-rows: max-content;
+  justify-content: center;
+}
+.heroTitle {
+  font-size: var(--hero-title-size);
+  font-weight: 900;
+  line-height: 1em;
+}
+.highlightSpan,
+.themeTitle {
+  color: var(--accent-clr);
+}
+.heroSubtitle,
+.text {
+  color: var(--text-clr);
+  margin: 1em 0 2em 0;
+  /* max-width: fit-content; */
+}
+/* ========== Hero Buttons Containers ==========*/
+.heroButtonsContainer {
+  /* display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.heroButtonCard {
+  position: relative;
+  padding: 1em;
+  background: #3c3c5a;
+  border: 3px solid var(--accent-clr);
+  box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  max-width: 20em;
+  justify-self: center;
+}
+.heroButtonCard:nth-child(n + 2) {
+  border: none;
+}
+.heroButtonCard:nth-child(n + 2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--disable-clr);
+}
+.heroButtonIcon {
+  width: 50px;
+}
+/* ========== Hero Buttons ==========*/
+.go-to-btn {
+  padding: 1em 2em;
+  border-radius: 0.5em;
+  color: #fff;
+  display: inline-block;
+  width: 13em;
+  font-weight: 700;
+  margin: 0.5em;
+}
+.go-to-hand-book-btn {
+  background: var(--accent-clr);
+}
+.go-to-online-coding-btn {
+  background: #4bb174;
+}
+.go-to-exam-btn {
+  background: #f93866;
+}
+
+/* ========== Other Sections ==========*/
+.sectionImg {
+  width: 100%;
+  max-width: 450px;
+}
+
+/* ========== Footer ==========*/
+.footer {
+  font-size: 0.7rem;
+  padding: 3em;
+  background: #242424;
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  section:nth-child(even) .contentContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+  section:nth-child(odd) .contentContainer {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+}
