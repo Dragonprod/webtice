@@ -20,7 +20,7 @@ export default function ReferenceBookMenu() {
       <header className={styles.headerBackground}>
         <Link className={styles.navLogoRef} to="/">
           <img className={styles.menuLogo} src={logo} alt="Логотип" />
-          {/* <span className={styles.logoName}>Webtice</span> */}
+          <span className={styles.logoName}>Webtice</span>
         </Link>
         <input type="checkbox" name="menu" id={styles.check} />
         <div id="menuBtn" className={styles.menuBtn}>

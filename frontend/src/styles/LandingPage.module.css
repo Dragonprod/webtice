@@ -69,6 +69,11 @@
   border-radius: 20px;
   max-width: 20em;
   justify-self: center;
+  transition: transform 0.3s;
+}
+.heroButtonCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.25);
 }
 .heroButtonCard:nth-child(n + 2) {
   border: none;
@@ -95,6 +100,10 @@
   width: 13em;
   font-weight: 700;
   margin: 0.5em;
+  transition: transform 0.3s;
+}
+.go-to-btn:hover {
+  transform: scale(1.1);
 }
 .go-to-hand-book-btn {
   background: var(--accent-clr);
