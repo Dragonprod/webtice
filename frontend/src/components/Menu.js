@@ -9,7 +9,7 @@ export default function Menu() {
       <header className={styles.headerBackground}>
         <Link className={styles.navLogoRef} to="/">
           <img className={styles.menuLogo} src={logo} alt="Логотип" />
-          {/* <span className={styles.logoName}>Webtice</span> */}
+          <span className={styles.logoName}>Webtice</span>
         </Link>
         <input type="checkbox" name="menu" id={styles.check} />
         <div id="menuBtn" className={styles.menuBtn}>
@@ -17,19 +17,19 @@ export default function Menu() {
         </div>
         <nav className={styles.menuNav}>
           <div className={styles.menuNavLinks}>
-            <a href="#App_hero__2xCMo" className={styles.landingMenuLink}>
+            <a href="#LandingPage_hero__2HwsX" className={styles.landingMenuLink}>
               Главная
             </a>
-            <a href="#App_about__2tjJy" className={styles.landingMenuLink}>
+            <a href="#LandingPage_about__132uQ" className={styles.landingMenuLink}>
               О проекте
             </a>
-            <a href="#App_handbook__2-Sp1" className={styles.landingMenuLink}>
+            <a href="#LandingPage_handbook__3n8zN" className={styles.landingMenuLink}>
               Веб-справочник
             </a>
-            <a href="#App_coding__1zK4z" className={styles.landingMenuLink}>
+            <a href="#LandingPage_coding__6cKMM" className={styles.landingMenuLink}>
               Онлайн кодинг
             </a>
-            <a href="#App_exam__2Y0p6" className={styles.landingMenuLink}>
+            <a href="#LandingPage_exam__1pBj6" className={styles.landingMenuLink}>
               Экзамен
             </a>
           </div>
