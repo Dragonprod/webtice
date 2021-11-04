@@ -15,12 +15,12 @@ test('renders main title', () => {
 
 test('renders card buttons text', () => {
   render(<App />);
-  const linkElement = screen.getByText(/Веб-справочник/i);
-  expect(linkElement).toBeInTheDocument();
+  const firstText = screen.getByText(/Веб-справочник/i);
+  expect(firstText).toBeInTheDocument();
 
-  const linkElement = screen.getByText(/Онлайн Кодинг/i);
-  expect(linkElement).toBeInTheDocument();
+  const secondText = screen.getByText(/Онлайн Кодинг/i);
+  expect(secondText).toBeInTheDocument();
 
-  const linkElement = screen.getByText(/Экзамен/i);
-  expect(linkElement).toBeInTheDocument();
+  const thirdText = screen.getByText(/Экзамен/i);
+  expect(thirdText).toBeInTheDocument();
 });
