@@ -4,6 +4,7 @@ import LandingPage from "./pages/LangingPage";
 import ReferenceBookPage from "./pages/ReferenceBookPage";
 
 function App() {
+  // TODO: Add components for exam and learn path
   return (
     <div className="App">
       <main>
@@ -11,6 +12,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/refbook" component={ReferenceBookPage} />
+            <Route path="/exam" component={LandingPage} />
+            <Route path="/learn" component={LandingPage} /> 
           </Switch>
         </BrowserRouter>
       </main>
