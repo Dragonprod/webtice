@@ -13,14 +13,14 @@ test('renders main title', () => {
 //   expect(linkElement).toBeInTheDocument();
 // });
 
-test('renders card buttons text', () => {
-  render(<App />);
-  const firstText = screen.getByText(/Веб-справочник/i);
-  expect(firstText).toBeInTheDocument();
+// test('renders card buttons text', () => {
+//   render(<App />);
+//   const firstText = screen.getByText(/Веб-справочник/i);
+//   expect(firstText).toBeInTheDocument();
 
-  const secondText = screen.getByText(/Онлайн Кодинг/i);
-  expect(secondText).toBeInTheDocument();
+//   const secondText = screen.getByText(/Онлайн Кодинг/i);
+//   expect(secondText).toBeInTheDocument();
 
-  const thirdText = screen.getByText(/Экзамен/i);
-  expect(thirdText).toBeInTheDocument();
-});
+//   const thirdText = screen.getByText(/Экзамен/i);
+//   expect(thirdText).toBeInTheDocument();
+// });
