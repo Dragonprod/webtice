@@ -25,8 +25,8 @@ a {
   --css-accent-clr: #00a3ff;
   --disable-clr: rgba(0, 0, 0, 0.5);
   --hero-title-size: 2rem;
-  --theme-title-size: clamp(24px, 20px + 1vw, 48px);
+  --theme-title-size: clamp(24px, calc(20px + 1vw), 48px);
   --burger-size: 40px;
-  font-size: clamp(16px, 12px + 0.5vw, 18px);
+  font-size: clamp(16px, calc(12px + 0.5vw), 18px);
   scroll-behavior: smooth;
 }
