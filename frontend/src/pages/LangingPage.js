@@ -23,8 +23,9 @@ export default function LandingPage() {
             <span className={styles.highlightSpan}>сейчас</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-            nemo obcaecati dolor blanditiis magnam repudiandae
+            Webtice — образовательная платформа РТУ МИРЭА для обучения студентов
+            веб-разработке и проведения экзаменов, преимущественно по
+            компьютерным дисциплинам
           </p>
           <div className={styles.heroButtonsContainer}>
             <div className={styles.heroButtonCard}>
@@ -34,8 +35,8 @@ export default function LandingPage() {
                 alt="Иконка справочника"
               />
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
+                Интерактивный справочник по HTML и CSS элементам с возможность
+                просмотра изменений в реальном времени
               </p>
               <a
                 href="/refbook"
@@ -51,8 +52,7 @@ export default function LandingPage() {
                 alt="Иконка кода"
               />
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
+                Онлайн задания по веб-разработке(преимущественно верстка)
               </p>
               <a
                 href="/"
@@ -68,8 +68,7 @@ export default function LandingPage() {
                 alt="Иконка экзамена"
               />
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
+                Система проведения экзаменов
               </p>
               <a
                 href="/"
@@ -150,7 +149,7 @@ export default function LandingPage() {
         </div>
       </section>
       <footer className={styles.footer}>
-        2021© MIREA NINJA. ALL RIGHTS RESERVED
+        © 2021 MIREA NINJA.
       </footer>
     </>
   );
