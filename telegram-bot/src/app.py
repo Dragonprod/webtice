@@ -8,7 +8,6 @@ from telegram.ext import (Updater, CommandHandler, CallbackContext,
 from telegram_bot_pagination import InlineKeyboardPaginator
 
 
-HEAD_ADMIN_CHAT_ID = 459986662
 logger = logging.getLogger(__name__)
 
 
