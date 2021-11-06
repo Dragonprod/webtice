@@ -21,9 +21,6 @@ export default function Menu() {
             <a href="#hero" className={styles.landingMenuLink}>
               Главная
             </a>
-            <a href="#about" className={styles.landingMenuLink}>
-              О проекте
-            </a>
             <a href="#handbook" className={styles.landingMenuLink}>
               Веб-справочник
             </a>
@@ -33,10 +30,7 @@ export default function Menu() {
             <a href="#exam" className={styles.landingMenuLink}>
               Экзамен
             </a>
-            <a
-              href="#LandingPage_about__132uQ"
-              className={styles.landingMenuLink}
-            >
+            <a href="#about" className={styles.landingMenuLink}>
               О проекте
             </a>
           </div>
