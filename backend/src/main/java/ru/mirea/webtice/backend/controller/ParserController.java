@@ -17,5 +17,6 @@ public class ParserController {
     @PostMapping("/parse")
     void parseStart() throws IOException {
         parserService.start();
+
     }
 }

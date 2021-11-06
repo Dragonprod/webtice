@@ -18,28 +18,19 @@ export default function Menu() {
         </div>
         <nav className={styles.menuNav}>
           <div className={styles.menuNavLinks}>
-            <a
-              href="#LandingPage_hero__2HwsX"
-              className={styles.landingMenuLink}
-            >
+            <a href="#hero" className={styles.landingMenuLink}>
               Главная
             </a>
-            <a
-              href="#LandingPage_handbook__3n8zN"
-              className={styles.landingMenuLink}
-            >
+            <a href="#about" className={styles.landingMenuLink}>
+              О проекте
+            </a>
+            <a href="#handbook" className={styles.landingMenuLink}>
               Веб-справочник
             </a>
-            <a
-              href="#LandingPage_coding__6cKMM"
-              className={styles.landingMenuLink}
-            >
+            <a href="#coding" className={styles.landingMenuLink}>
               Онлайн кодинг
             </a>
-            <a
-              href="#LandingPage_exam__1pBj6"
-              className={styles.landingMenuLink}
-            >
+            <a href="#exam" className={styles.landingMenuLink}>
               Экзамен
             </a>
             <a

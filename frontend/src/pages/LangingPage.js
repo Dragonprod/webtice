@@ -17,7 +17,7 @@ export default function LandingPage() {
   return (
     <>
       <Menu />
-      <section id={styles.hero}>
+      <section id="hero" className={styles.hero}>
         <div className={styles.heroContentContainer}>
           <h1 className={styles.heroTitle}>
             Начни учиться прямо{" "}
@@ -68,9 +68,7 @@ export default function LandingPage() {
                 src={examIcon}
                 alt="Иконка экзамена"
               />
-              <p className={styles.text}>
-                Система проведения экзаменов
-              </p>
+              <p className={styles.text}>Система проведения экзаменов</p>
               <a
                 href="/"
                 className={`${styles["go-to-btn"]} ${styles["go-to-exam-btn"]}`}
@@ -81,7 +79,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.about}>
+      <section id="about" className={styles.about}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -98,7 +96,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.handbook}>
+      <section id="handbook" className={styles.handbook}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -115,7 +113,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.coding}>
+      <section id="coding" className={styles.coding}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -132,7 +130,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.exam}>
+      <section id="exam" className={styles.exam}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -149,9 +147,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className={styles.footer}>
-        © 2021 MIREA NINJA.
-      </footer>
+      <footer className={styles.footer}>© 2021 MIREA NINJA.</footer>
     </>
   );
 }
