@@ -12,9 +12,17 @@ public class Attribute {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name="name")
     private String attributeName;
 
+    @Column(name="description")
     private String description;
+
+    @Column(name="is_glbobal", columnDefinition = "boolean default false")
+    private Boolean isGlobal = false;
+
+    @Column(name="is_event", columnDefinition = "boolean default false")
+    private Boolean isEvent = false;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -36,6 +44,30 @@ public class Attribute {
 
     public Set<Tag> getTags() {
         return tags;
+    }
+
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
+    }
+
+    public void setIsGlobal() {
+        this.isGlobal = true;
+    }
+
+    public void setIsEvent() {
+        this.isEvent = true;
+    }
+
+    public Boolean getIsGlobal() {
+        return isGlobal;
+    }
+
+    public Boolean getIsEvent() {
+        return isEvent;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 
