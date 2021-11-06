@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { render, screen } from "@testing-library/react";
+import Menu from "./components/Menu";
 import LandingPage from "./pages/LangingPage";
 
 test("renders main title part one", () => {
@@ -23,14 +25,38 @@ test("renders description", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// test('renders card buttons text', () => {
-//   render(<App />);
-//   const firstText = screen.getByText(/Веб-справочник/i);
-//   expect(firstText).toBeInTheDocument();
+test('renders menu', () => {
+  render(<Menu/>);
 
-//   const secondText = screen.getByText(/Онлайн Кодинг/i);
-//   expect(secondText).toBeInTheDocument();
+  const logoText = screen.getByText(/Webtice/i);
+  expect(logoText).toBeInTheDocument();
 
-//   const thirdText = screen.getByText(/Экзамен/i);
-//   expect(thirdText).toBeInTheDocument();
+  const mainText = screen.getByText(/Главная/i);
+  expect(mainText).toBeInTheDocument();
+
+  const refBookText = screen.getByText(/Веб-справочник/i);
+  expect(refBookText).toBeInTheDocument();
+
+  const codeText = screen.getByText(/Онлайн кодинг/i);
+  expect(codeText).toBeInTheDocument();
+
+  const examText = screen.getByText(/Экзамен/i);
+  expect(examText).toBeInTheDocument();
+
+  const aboutText = screen.getByText(/О проекте/i);
+  expect(aboutText).toBeInTheDocument();
+});
+
+// test('renders tags menu', () => {
+//   render(<ReferenceBookMenu/>);
+
+//   const logoText = screen.getByText(/Webtice/i);
+//   expect(logoText).toBeInTheDocument();
+
+//   const mainText = screen.getByText(/Главная/i);
+//   expect(mainText).toBeInTheDocument();
+
+//   const gitText = screen.getByText(/GitHub/i);
+//   expect(gitText).toBeInTheDocument();
+
 // });
