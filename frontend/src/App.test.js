@@ -25,8 +25,8 @@ test("renders description", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-test('renders menu', () => {
-  render(<Menu/>);
+test("renders menu", () => {
+  render(<Menu />);
 
   const logoText = screen.getByText(/Webtice/i);
   expect(logoText).toBeInTheDocument();
