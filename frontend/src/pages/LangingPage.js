@@ -79,23 +79,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="about" className={styles.about}>
-        <div className={styles.contentContainer}>
-          <img
-            className={styles.sectionImg}
-            src={projectImg}
-            alt="SVG-изображение"
-          />
-          <div className={styles.textContainer}>
-            <h2 className={styles.themeTitle}>О проекте</h2>
-            <p className={styles.text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
-              voluptates quibusdam natus?
-            </p>
-          </div>
-        </div>
-      </section>
       <section id="handbook" className={styles.handbook}>
         <div className={styles.contentContainer}>
           <img
@@ -139,6 +122,23 @@ export default function LandingPage() {
           />
           <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>Экзамен</h2>
+            <p className={styles.text}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+              nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
+              voluptates quibusdam natus?
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="about" className={styles.about}>
+        <div className={styles.contentContainer}>
+          <img
+            className={styles.sectionImg}
+            src={projectImg}
+            alt="SVG-изображение"
+          />
+          <div className={styles.textContainer}>
+            <h2 className={styles.themeTitle}>О проекте</h2>
             <p className={styles.text}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
               nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
