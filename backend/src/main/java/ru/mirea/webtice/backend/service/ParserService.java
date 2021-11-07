@@ -1,19 +1,31 @@
 package ru.mirea.webtice.backend.service;
 
+import org.hibernate.ReplicationMode;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.CriteriaQuery;
+import org.hibernate.query.Query;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mirea.webtice.backend.entity.Attribute;
 import ru.mirea.webtice.backend.entity.Tag;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Root;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Set;
 
 @Service
 public class ParserService<Set> {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
     private Elements globalAttr;
     private final String http = "http://htmlbook.ru/html";
     private final String httpGlobalAttr = "http://htmlbook.ru/html/attr/common";
@@ -51,12 +63,32 @@ public class ParserService<Set> {
         tag.setDescription(descriptionTag);
         tag.setName(nameTag);
         tag.setAttributes(attributes);
-        tag.setCloseTag(closeTag.nextElementSibling().text());
-        //addToDatabase(tag);
+        tag.setCloseTag(closeTag!=null ? closeTag.nextElementSibling().text() : "Нет");
+        addToDatabase(tag);
     }
 
     public void addToDatabase(Tag tag){
-        //adding to database
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try{
+            for(Attribute attr : tag.getAttributes()){
+                session.saveOrUpdate(attr);
+            }
+            transaction = session.beginTransaction();
+            session.persist(tag);
+            transaction.commit();
+        }
+        catch(Exception e){
+            if(transaction !=null){
+                transaction.rollback();
+                e.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+        finally{
+            session.close();
+        }
+
     }
 
     public void parseGlobalAttr() throws IOException{
@@ -67,7 +99,7 @@ public class ParserService<Set> {
         for (int i = 0; i < namesAttr.size(); i++){
             Attribute attr = new Attribute();
             attr.setAttributeName(namesAttr.get(i).text());
-            attr.setDescription(descriptionsAttr.get(i).text());
+            attr.setDescription(descriptionsAttr.get(i+1).text());
             attr.setIsGlobal();
             this.eventsAttributes.add(attr);
         };
@@ -94,8 +126,8 @@ public class ParserService<Set> {
         Element docTags = doc.select("div#block-content").first();
         Elements tags = docTags.select("li > a");
         for(Element tag: tags){
+            System.out.println(tag);
             parseTag(tag.attr("abs:href"));
-            break;
         }
     }
 }
