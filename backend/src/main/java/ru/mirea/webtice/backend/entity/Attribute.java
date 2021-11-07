@@ -9,13 +9,13 @@ import java.util.Set;
 public class Attribute {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name="name")
     private String attributeName;
 
-    @Column(name="description")
+    @Column(name="description", columnDefinition="TEXT")
     private String description;
 
     @Column(name="is_glbobal", columnDefinition = "boolean default false")
@@ -30,7 +30,7 @@ public class Attribute {
     )
     private Set<Tag> tags = new HashSet<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

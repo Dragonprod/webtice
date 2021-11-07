@@ -11,13 +11,13 @@ import java.util.Set;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name="tag_name")
     private String tagName;
 
-    @Column(name="description")
+    @Column(name="description", length = 1024)
     private String description;
 
     @Column(name="close_tag")
@@ -26,8 +26,7 @@ public class Tag {
     @Column(name="is_used", columnDefinition = "boolean default false")
     private Boolean isUsed = false;
 
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {
+    @ManyToMany(cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE}
     )
@@ -38,7 +37,7 @@ public class Tag {
     )
     private Set<Attribute> attributes = new HashSet<>();
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -57,6 +56,8 @@ public class Tag {
     public Boolean getIsUsed() {
         return isUsed;
     }
+
+    public Set<Attribute> getAttributes(){ return this.attributes;}
 
     public void setAttributes(Set<Attribute> attributes) {
         this.attributes = attributes;
