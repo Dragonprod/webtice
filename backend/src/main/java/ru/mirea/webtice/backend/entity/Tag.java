@@ -1,7 +1,6 @@
 package ru.mirea.webtice.backend.entity;
 
-import org.hibernate.annotations.Type;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +11,7 @@ public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name="tag_name")
     private String tagName;
@@ -26,7 +25,8 @@ public class Tag {
     @Column(name="is_used", columnDefinition = "boolean default false")
     private Boolean isUsed = false;
 
-    @ManyToMany(cascade = {
+    @ManyToMany(
+            cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE}
     )
@@ -35,7 +35,15 @@ public class Tag {
             joinColumns = @JoinColumn(name = "tag_id") ,
             inverseJoinColumns =  @JoinColumn(name = "attribute_id")
     )
+    @JsonManagedReference
     private Set<Attribute> attributes = new HashSet<>();
+
+//    @ElementCollection(fetch=FetchType.EAGER)
+//    @CollectionTable(name = "tag_attributes",
+//            joinColumns=@JoinColumn(name = "tag_id",
+//                    referencedColumnName = "id"))
+//    @Column(name = "attribute_name")
+//    private List<String> attributesName = new ArrayList<String>();
 
     public long getId() {
         return id;

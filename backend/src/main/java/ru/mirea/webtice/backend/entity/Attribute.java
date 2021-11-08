@@ -1,5 +1,6 @@
 package ru.mirea.webtice.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,15 +11,15 @@ public class Attribute {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name="name")
+    @Column(name="attribute_name")
     private String attributeName;
 
-    @Column(name="description", columnDefinition="TEXT")
+    @Column(name="attribute_description", columnDefinition="TEXT")
     private String description;
 
-    @Column(name="is_glbobal", columnDefinition = "boolean default false")
+    @Column(name="is_global", columnDefinition = "boolean default false")
     private Boolean isGlobal = false;
 
     @Column(name="is_event", columnDefinition = "boolean default false")
@@ -28,6 +29,7 @@ public class Attribute {
             CascadeType.PERSIST,
             CascadeType.MERGE}, mappedBy = "attributes"
     )
+    @JsonBackReference
     private Set<Tag> tags = new HashSet<>();
 
     public long getId() {
