@@ -1,30 +1,24 @@
 package ru.mirea.webtice.backend.service;
 
-import org.hibernate.ReplicationMode;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaQuery;
-import org.hibernate.query.Query;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.mirea.webtice.backend.entity.Attribute;
 import ru.mirea.webtice.backend.entity.Tag;
-
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Root;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.IOException;
 import java.util.HashSet;
 
 @Service
 public class ParserService<Set> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private Elements globalAttr;
     private final String http = "http://htmlbook.ru/html";
@@ -68,7 +62,7 @@ public class ParserService<Set> {
     }
 
     public void addToDatabase(Tag tag){
-        Session session = sessionFactory.openSession();
+        Session session = entityManager.unwrap(Session.class);
         Transaction transaction = null;
         try{
             for(Attribute attr : tag.getAttributes()){
