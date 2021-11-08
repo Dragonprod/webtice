@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import styles from "../styles/Menu.module.css";
 import styles2 from "../styles/Tags.module.css";

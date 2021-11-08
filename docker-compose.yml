@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  webtice-server:
-    container_name: webtice-server
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    image: webtice-server
-    ports:
-      - "8080:8080"
-    depends_on:
-      - webtice-db
+#  webtice-server:
+#    container_name: webtice-server
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#    image: webtice-server
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - webtice-db
 
   webtice-db:
     image: postgres:12.2-alpine

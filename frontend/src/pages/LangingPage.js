@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import styles from "../styles/LandingPage.module.css";
 
@@ -16,15 +17,16 @@ export default function LandingPage() {
   return (
     <>
       <Menu />
-      <section id={styles.hero}>
+      <section id="hero" className={styles.hero}>
         <div className={styles.heroContentContainer}>
           <h1 className={styles.heroTitle}>
             Начни учиться прямо{" "}
             <span className={styles.highlightSpan}>сейчас</span>
           </h1>
           <p className={styles.heroSubtitle}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-            nemo obcaecati dolor blanditiis magnam repudiandae
+            Webtice — образовательная платформа РТУ МИРЭА для обучения студентов
+            веб-разработке и проведения экзаменов, преимущественно по
+            компьютерным дисциплинам
           </p>
           <div className={styles.heroButtonsContainer}>
             <div className={styles.heroButtonCard}>
@@ -34,8 +36,8 @@ export default function LandingPage() {
                 alt="Иконка справочника"
               />
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
+                Интерактивный справочник по HTML и CSS элементам с возможность
+                просмотра изменений в реальном времени
               </p>
               <a
                 href="/refbook"
@@ -51,8 +53,7 @@ export default function LandingPage() {
                 alt="Иконка кода"
               />
               <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
+                Онлайн задания по веб-разработке(преимущественно верстка)
               </p>
               <a
                 href="/"
@@ -67,10 +68,7 @@ export default function LandingPage() {
                 src={examIcon}
                 alt="Иконка экзамена"
               />
-              <p className={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-                nemo obcaecati dolor blanditiis magnam repudiandae
-              </p>
+              <p className={styles.text}>Система проведения экзаменов</p>
               <a
                 href="/"
                 className={`${styles["go-to-btn"]} ${styles["go-to-exam-btn"]}`}
@@ -81,24 +79,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.about}>
-        <div className={styles.contentContainer}>
-          <img
-            className={styles.sectionImg}
-            src={projectImg}
-            alt="SVG-изображение"
-          />
-          <div className={styles.textContainer}>
-            <h2 className={styles.themeTitle}>О проекте</h2>
-            <p className={styles.text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
-              voluptates quibusdam natus?
-            </p>
-          </div>
-        </div>
-      </section>
-      <section id={styles.handbook}>
+      <section id="handbook" className={styles.handbook}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -115,7 +96,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.coding}>
+      <section id="coding" className={styles.coding}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -132,7 +113,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id={styles.exam}>
+      <section id="exam" className={styles.exam}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
@@ -149,9 +130,24 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className={styles.footer}>
-        2021© MIREA NINJA. ALL RIGHTS RESERVED
-      </footer>
+      <section id="about" className={styles.about}>
+        <div className={styles.contentContainer}>
+          <img
+            className={styles.sectionImg}
+            src={projectImg}
+            alt="SVG-изображение"
+          />
+          <div className={styles.textContainer}>
+            <h2 className={styles.themeTitle}>О проекте</h2>
+            <p className={styles.text}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+              nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
+              voluptates quibusdam natus?
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer className={styles.footer}>© 2021 MIREA NINJA.</footer>
     </>
   );
 }

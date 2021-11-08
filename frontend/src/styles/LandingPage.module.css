@@ -1,8 +1,8 @@
 /* ========== Common Settings ==========*/
-#about,
-#handbook,
-#coding,
-#exam {
+.about,
+.handbook,
+.coding,
+.exam {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,15 +18,9 @@
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
   gap: 20px;
 }
-.sectionImg {
-  /* grid-column: span 7; */
-}
-.textContainer {
-  /* grid-column: 9 / span 4; */
-}
 
 /* ========== Hero Section ==========*/
-#hero {
+.hero {
   padding: 7em 1em 2em 1em;
 }
 .heroContentContainer {
@@ -70,6 +64,9 @@
   max-width: 20em;
   justify-self: center;
   transition: transform 0.3s;
+  display: grid;
+  grid-template-rows: 0.5fr 2fr 0.5fr;
+  place-items: center;
 }
 .heroButtonCard:hover {
   transform: scale(1.02);
@@ -79,7 +76,7 @@
   border: none;
 }
 .heroButtonCard:nth-child(n + 2)::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -99,14 +96,18 @@
   display: inline-block;
   width: 13em;
   font-weight: 700;
-  margin: 0.5em;
-  transition: transform 0.3s;
-}
-.go-to-btn:hover {
-  transform: scale(1.1);
+  /* margin: 0.5em; */
+  transition: 0.3s;
 }
 .go-to-hand-book-btn {
   background: var(--accent-clr);
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+.go-to-hand-book-btn:hover {
+  background: #ec35eb;
+  box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%),
+    0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 .go-to-online-coding-btn {
   background: #4bb174;
@@ -124,7 +125,7 @@
 /* ========== Footer ==========*/
 .footer {
   font-size: 0.7rem;
-  padding: 3em;
+  padding: 1.5em 3em;
   background: #242424;
   text-align: center;
 }
