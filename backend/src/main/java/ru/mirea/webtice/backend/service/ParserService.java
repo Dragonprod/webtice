@@ -32,7 +32,8 @@ public class ParserService<Set> {
         Document doc = Jsoup.connect(http).get();
         Element blockContent = doc.select("div#block-content").first();
         String descriptionTag = blockContent.select("p").first().text();
-        String nameTag = doc.select("h1 > span").first().text();
+        String nameTagParse = doc.select("h1 > span").first().text();
+        String nameTag = nameTagParse.substring(nameTagParse.indexOf("<")).trim();
         Element blockAttrs = blockContent.select(".param").first();
         java.util.Set<Attribute> attributes = new HashSet<>();
         Element closeTag = blockContent.select("h3:contains(Закрывающий тег)").first();

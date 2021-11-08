@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReferenceBookMenu from "../components/Tags";
 import styles from "../styles//ReferenceBookPage.module.css";
 import List from "@mui/material/List";
@@ -9,6 +9,8 @@ import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
+import API from "../api/api";
+import { renderTagsList } from "../services/renders";
 
 export const tagsAndProperties = [
   { title: "<!-- -->" },
@@ -18,6 +20,17 @@ export const tagsAndProperties = [
 ];
 
 export default function ReferenceBook() {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    const getTagsApi = async () => {
+      const response = await API.get("/tag");
+      setTags(response.data);
+    };
+    getTagsApi();
+  }, []);
+
+  const tagsData = renderTagsList(tags);
   return (
     <>
       <ReferenceBookMenu />
@@ -38,16 +51,7 @@ export default function ReferenceBook() {
             aria-label="secondary mailbox folders"
           >
             <List>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="#<!-- -->">
-                  <ListItemText primary="<!-- -->" />
-                </ListItemButton>
-              </ListItem>
-              <ListItem disablePadding>
-                <ListItemButton component="a" href="#<!DOCTYPE>">
-                  <ListItemText primary="<!DOCTYPE>" />
-                </ListItemButton>
-              </ListItem>
+              {tagsData}
             </List>
           </nav>
           <h2 className={styles.cssTitle}>CSS</h2>
