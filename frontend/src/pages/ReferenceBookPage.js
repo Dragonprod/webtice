@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import API from "../api/api";
 import { renderTagsList } from "../services/renders";
+import TagPage from "../components/TagPage";
 
 export const tagsAndProperties = [
   { title: "<!-- -->" },
@@ -72,7 +73,7 @@ export default function ReferenceBook() {
           </nav>
         </div>
         <div className={styles.mainСontent}>
-          <div className={styles.textContainer}>
+          {/* <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>Быстрый старт</h2>
             <p className={styles.text}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
@@ -80,7 +81,8 @@ export default function ReferenceBook() {
               voluptates quibusdam natus?
             </p>
           </div>
-          <div className={styles.codeContainer}></div>
+          <div className={styles.codeContainer}></div> */}
+          <TagPage name = "Test TEST tEsT" description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum" attrs = "" />
         </div>
       </div>
     </>
