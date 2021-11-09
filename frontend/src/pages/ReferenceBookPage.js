@@ -50,9 +50,7 @@ export default function ReferenceBook() {
             className={styles.sidebarNavLinks}
             aria-label="secondary mailbox folders"
           >
-            <List>
-              {tagsData}
-            </List>
+            <List>{tagsData}</List>
           </nav>
           <h2 className={styles.cssTitle}>CSS</h2>
           <nav

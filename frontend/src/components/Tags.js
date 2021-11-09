@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect} from "react";
 import styles from "../styles/Menu.module.css";
 import styles2 from "../styles/Tags.module.css";
 import logo from "../assets/logo.svg";
@@ -14,8 +14,22 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 
 import { tagsAndProperties } from "../pages/ReferenceBookPage.js";
+import API from "../api/api";
+import { renderTagsList } from "../services/renders";
 
 export default function ReferenceBookMenu() {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    const getTagsApi = async () => {
+      const response = await API.get("/tag");
+      setTags(response.data);
+    };
+    getTagsApi();
+  }, []);
+
+  const tagsData = renderTagsList(tags);
+
   return (
     <>
       <header className={styles.headerBackground}>
@@ -59,18 +73,7 @@ export default function ReferenceBookMenu() {
               className={styles2.sidebarNavLinks}
               aria-label="secondary mailbox folders"
             >
-              <List>
-                <ListItem disablePadding>
-                  <ListItemButton component="a" href="#<!-- -->">
-                    <ListItemText primary="<!-- -->" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton component="a" href="#<!DOCTYPE>">
-                    <ListItemText primary="<!DOCTYPE>" />
-                  </ListItemButton>
-                </ListItem>
-              </List>
+              <List>{tagsData}</List>
             </nav>
             <h2 className={styles2.cssTitle}>CSS</h2>
             <nav

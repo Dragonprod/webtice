@@ -68,7 +68,7 @@
   overflow-x: hidden;
   right: -100%;
   transition: 0.5s;
-  padding: 1em 2em;
+  padding: 1em 2em 5em;
   display: flex;
   align-items: center;
 }
@@ -127,6 +127,7 @@
     width: auto;
     height: auto;
     background: transparent;
+    padding-bottom: 1em;
   }
   .menuNavLinks {
     flex-direction: row;
