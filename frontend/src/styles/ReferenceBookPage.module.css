@@ -80,9 +80,12 @@
   }
   .sidebar {
     display: block;
-    padding: 8em 1em 2em 1em;
+    padding: 2em 1em 5em;
     background: var(--sidebar-bg-dark-clr);
     position: fixed;
     height: 100%;
+    overflow-x: hidden;
+    max-width: 275px;
+    top: 93px;
   }
 }

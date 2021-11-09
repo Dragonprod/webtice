@@ -30,3 +30,15 @@ a {
   font-size: clamp(16px, calc(12px + 0.5vw), 18px);
   scroll-behavior: smooth;
 }
+/* =====Scrollbar===== */
+::-webkit-scrollbar-track {
+  margin-block: 0.5em;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background: none;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-clr);
+  border-radius: 6px;
+}
