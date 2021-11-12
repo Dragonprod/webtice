@@ -22,7 +22,7 @@ class TagPage extends PureComponent {
         <h2 className={styles.themeTitle}>{name}</h2>
         <p className={styles.text}>{desc}</p>
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 650 }} aria-label="properties table">
             <TableHead>
               <TableRow>
                 <TableCell align="left">Свойство</TableCell>

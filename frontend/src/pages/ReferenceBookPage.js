@@ -48,9 +48,9 @@ export default function ReferenceBook() {
             <Stack spacing={2} sx={{ width: 240 }}>
               <Autocomplete
                 className={styles.searchbar}
-                id="free-solo-demo"
+                id="search-main"
                 freeSolo
-                options={tagsAndProperties.map((option) => option.title)}
+                options={tags.map((option) => option.name)}
                 renderInput={(params) => (
                   <TextField {...params} label="Поиск" />
                 )}
@@ -93,9 +93,9 @@ export default function ReferenceBook() {
           </div>
           <div className={styles.codeContainer}></div> */}
             <TagPage
-              name={tags[2].name}
-              description={tags[2].description}
-              attrs={tags[2].attributes}
+              name={tags[3].name}
+              description={tags[3].description}
+              attrs={tags[3].attributes}
             />
           </div>
         </div>
