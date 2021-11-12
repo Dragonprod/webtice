@@ -60,9 +60,9 @@ export default function ReferenceBookMenu() {
             <Stack spacing={2} sx={{ width: 240 }}>
               <Autocomplete
                 className={styles2.searchbar}
-                id="free-solo-demo"
+                id="search-main"
                 freeSolo
-                options={tagsAndProperties.map((option) => option.title)}
+                options={tags.map((option) => option.name)}
                 renderInput={(params) => (
                   <TextField {...params} label="Поиск" />
                 )}

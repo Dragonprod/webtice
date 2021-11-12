@@ -8,7 +8,7 @@ export const renderTagsList = (items) => {
   let tags = null;
   if (items !== undefined && items !== null && items.length !== 0) {
     tags = items.map((tag) => (
-      <ListItem disablePadding>
+      <ListItem key={tag.id} disablePadding>
         <ListItemButton>
           <ListItemText primary={tag.name} />
         </ListItemButton>
