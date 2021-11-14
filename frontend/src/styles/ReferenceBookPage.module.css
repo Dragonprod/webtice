@@ -59,6 +59,7 @@
 .sidebarNavLinks li {
   border-radius: 10px;
   transition: 0.3s;
+  cursor: pointer;
 }
 .sidebarNavLinks li:hover {
   background: var(--accent-clr);
@@ -107,10 +108,10 @@ td:nth-child(2) {
   }
   .sidebar {
     display: block;
-    padding: 2em 1em 5em;
+    padding: 2em 1em;
     background: var(--sidebar-bg-dark-clr);
     position: fixed;
-    height: 100%;
+    height: calc(100% - 93px);
     overflow-x: hidden;
     max-width: 275px;
     top: 93px;
