@@ -73,6 +73,29 @@
   padding: 8em 2em 2em 2em;
   grid-column: 2;
 }
+.descriptionText {
+  text-align: justify;
+  line-height: 1.5;
+  margin-bottom: 3em;
+}
+th:nth-child(1),
+th:nth-child(2),
+td:nth-child(1),
+td:nth-child(2) {
+  color: #fff;
+  background: var(--menu-bg-clr);
+  border: 1px solid var(--accent-clr) !important;
+  border-right: none;
+}
+td:nth-child(2) {
+  border-left: none;
+}
+th:nth-child(1),
+th:nth-child(2) {
+  color: var(--accent-clr);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
 @media screen and (min-width: 1025px) {
   .mainGrid {
