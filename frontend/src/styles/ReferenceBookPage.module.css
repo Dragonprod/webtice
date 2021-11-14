@@ -71,7 +71,7 @@
 /* ========== Main Content ==========*/
 .mainСontent {
   min-height: 100vh;
-  padding: 8em 2em 2em 2em;
+  padding: 5em 2em 2em;
   grid-column: 2;
 }
 .descriptionText {
@@ -115,5 +115,8 @@ td:nth-child(2) {
     overflow-x: hidden;
     max-width: 275px;
     top: 93px;
+  }
+  .mainСontent {
+    padding: 8em 2em 2em;
   }
 }
