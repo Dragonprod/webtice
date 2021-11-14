@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import ReferenceBookMenu from "../components/Tags";
+import Menu from "../components/ReferenceMenu";
 import styles from "../styles//ReferenceBookPage.module.css";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,32 +11,53 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import API from "../api/api";
-import { renderTagsList } from "../services/renders";
 import TagPage from "../components/TagPage";
-
-export const tagsAndProperties = [
-  { title: "<!-- -->" },
-  { title: "<!DOCTYPE>" },
-  { title: "align-content" },
-  { title: "align-items" },
-];
 
 export default function ReferenceBook() {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [tagPage, settagPage] = useState();
+
   useEffect(() => {
     const getTagsApi = async () => {
       const response = await API.get("/tag");
       setTags(response.data);
+      settagPage(
+        <TagPage
+          name={response.data[0].name}
+          description={response.data[0].description}
+          attrs={response.data[0].attributes}
+        />
+      );
       setLoading(false);
     };
     getTagsApi();
   }, []);
 
-  const tagsData = renderTagsList(tags);
+  const handleItemChange = (tag) => {
+    settagPage(
+      <TagPage
+        name={tag.name}
+        description={tag.description}
+        attrs={tag.attributes}
+      />
+    );
+  };
+
+  const tagsData = tags.map((tag) => (
+    <ListItem
+      key={tag.id}
+      onClick={() => {
+        handleItemChange(tag);
+      }}
+    >
+      <ListItemText primary={tag.name} />
+    </ListItem>
+  ));
+
   return (
     <>
-      <ReferenceBookMenu />
+      <Menu />
       {loading && (
         <div className={styles.mainСontent}>
           <CircularProgress />
@@ -57,47 +78,21 @@ export default function ReferenceBook() {
               />
             </Stack>
             <h2 className={styles.htmlTitle}>HTML</h2>
-            <nav
-              className={styles.sidebarNavLinks}
-              aria-label="secondary mailbox folders"
-            >
-              <List>{tagsData}</List>
+            <nav className={styles.sidebarNavLinks} aria-label="html tags">
+              <React.Fragment>
+                <List>{tagsData}</List>
+              </React.Fragment>
             </nav>
             <h2 className={styles.cssTitle}>CSS</h2>
-            <nav
-              className={styles.sidebarNavLinks}
-              aria-label="secondary mailbox folders"
-            >
+            <nav className={styles.sidebarNavLinks} aria-label="css tags">
               <List>
-                <ListItem disablePadding>
-                  <ListItemButton component="a" href="#align-content">
-                    <ListItemText primary="align-content" />
-                  </ListItemButton>
-                </ListItem>
-                <ListItem disablePadding>
-                  <ListItemButton component="a" href="#align-items">
-                    <ListItemText primary="align-items" />
-                  </ListItemButton>
+                <ListItem>
+                  <ListItemText primary="css-tag" />
                 </ListItem>
               </List>
             </nav>
           </div>
-          <div className={styles.mainСontent}>
-            {/* <div className={styles.textContainer}>
-            <h2 className={styles.themeTitle}>Быстрый старт</h2>
-            <p className={styles.text}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-              nemo obcaecati dolor blanditiis magnam repudiandae in repellendus
-              voluptates quibusdam natus?
-            </p>
-          </div>
-          <div className={styles.codeContainer}></div> */}
-            <TagPage
-              name={tags[3].name}
-              description={tags[3].description}
-              attrs={tags[3].attributes}
-            />
-          </div>
+          <div className={styles.mainСontent}>{tagPage}</div>
         </div>
       )}
     </>

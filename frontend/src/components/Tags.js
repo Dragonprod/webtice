@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Menu.module.css";
 import styles2 from "../styles/Tags.module.css";
 import logo from "../assets/logo.svg";
@@ -13,22 +13,40 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import { tagsAndProperties } from "../pages/ReferenceBookPage.js";
 import API from "../api/api";
 import { renderTagsList } from "../services/renders";
+import TagPage from "../components/TagPage";
 
 export default function ReferenceBookMenu() {
   const [tags, setTags] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [tagPage, settagPage] = useState();
 
   useEffect(() => {
     const getTagsApi = async () => {
       const response = await API.get("/tag");
       setTags(response.data);
+      settagPage(
+        <TagPage
+          name={response.data[0].name}
+          description={response.data[0].description}
+          attrs={response.data[0].attributes}
+        />
+      );
+      setLoading(false);
     };
     getTagsApi();
   }, []);
 
-  const tagsData = renderTagsList(tags);
+  const handleItemChange = (tag) => {
+    settagPage(
+      <TagPage
+        name={tag.name}
+        description={tag.description}
+        attrs={tag.attributes}
+      />
+    );
+  };
 
   return (
     <>
@@ -73,7 +91,19 @@ export default function ReferenceBookMenu() {
               className={styles2.sidebarNavLinks}
               aria-label="secondary mailbox folders"
             >
-              <List>{tagsData}</List>
+              <List>
+                {tags.map((tag) => (
+                  <ListItem key={tag.id} disablePadding>
+                    <ListItemButton
+                      onClick={() => {
+                        handleItemChange(tag);
+                      }}
+                    >
+                      <ListItemText primary={tag.name} />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
             </nav>
             <h2 className={styles2.cssTitle}>CSS</h2>
             <nav
