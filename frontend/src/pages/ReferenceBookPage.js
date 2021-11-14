@@ -12,6 +12,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import API from "../api/api";
 import TagPage from "../components/TagPage";
+import CodeEditor from "../components/CodeEditor";
 
 export default function ReferenceBook() {
   const [tags, setTags] = useState([]);
@@ -92,7 +93,10 @@ export default function ReferenceBook() {
               </List>
             </nav>
           </div>
-          <div className={styles.mainСontent}>{tagPage}</div>
+          <div className={styles.mainСontent}>
+            {tagPage}
+            {/* <CodeEditor /> */}
+          </div>
         </div>
       )}
     </>
