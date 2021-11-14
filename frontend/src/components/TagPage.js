@@ -22,7 +22,7 @@ class TagPage extends PureComponent {
       <React.Fragment>
         <div className={styles.textContainer}>
           <h2 className={styles.themeTitle}>{name}</h2>
-          <p className={styles.text}>{desc}</p>
+          <p className={styles.descriptionText}>{desc}</p>
           {isAttrs && (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="properties table">

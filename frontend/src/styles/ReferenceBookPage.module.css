@@ -59,6 +59,7 @@
 .sidebarNavLinks li {
   border-radius: 10px;
   transition: 0.3s;
+  cursor: pointer;
 }
 .sidebarNavLinks li:hover {
   background: var(--accent-clr);
@@ -73,6 +74,33 @@
   padding: 8em 2em 2em 2em;
   grid-column: 2;
 }
+.descriptionText {
+  text-align: justify;
+  line-height: 1.5;
+  margin-bottom: 3em;
+  color: #e3e3e3;
+}
+th:nth-child(1),
+th:nth-child(2) {
+  color: var(--accent-clr);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+th:nth-child(1),
+th:nth-child(2),
+td:nth-child(1),
+td:nth-child(2) {
+  color: var(--text-clr);
+  background: var(--menu-bg-clr);
+  border: 1px solid var(--accent-clr) !important;
+  border-right: none;
+}
+td:nth-child(1) {
+  font-weight: 700;
+}
+td:nth-child(2) {
+  border-left: none;
+}
 
 @media screen and (min-width: 1025px) {
   .mainGrid {
@@ -80,10 +108,10 @@
   }
   .sidebar {
     display: block;
-    padding: 2em 1em 5em;
+    padding: 2em 1em;
     background: var(--sidebar-bg-dark-clr);
     position: fixed;
-    height: 100%;
+    height: calc(100% - 93px);
     overflow-x: hidden;
     max-width: 275px;
     top: 93px;

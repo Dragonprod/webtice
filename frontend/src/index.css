@@ -32,7 +32,7 @@ a {
 }
 /* =====Scrollbar===== */
 ::-webkit-scrollbar-track {
-  margin-block: 0.5em;
+  /* margin-block: 0.5em; */
 }
 ::-webkit-scrollbar {
   width: 6px;
