@@ -2,6 +2,26 @@
 import React, { PureComponent, useState } from "react";
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 
+// export default function CodeEditor() {
+//   return (
+//     <LiveProvider code="<strong>Hello World!</strong>">
+//       <LiveEditor />
+//       <LiveError />
+//       <LivePreview />
+//     </LiveProvider>
+//   );
+// }
+
+// const CodeEditor = () => {
+//   return (
+//     <LiveProvider code="<strong>Hello World!</strong>">
+//       <LiveEditor />
+//       <LiveError />
+//       <LivePreview />
+//     </LiveProvider>
+//   );
+// };
+
 const CodeEditor = () => (
   <LiveProvider code="<strong>Hello World!</strong>">
     <LiveEditor />
@@ -21,4 +41,4 @@ const CodeEditor = () => (
 //     );
 //   }
 // }
-// export default CodeEditor;
+export default CodeEditor;
