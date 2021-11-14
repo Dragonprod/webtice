@@ -79,7 +79,9 @@ export default function ReferenceBook() {
             </Stack>
             <h2 className={styles.htmlTitle}>HTML</h2>
             <nav className={styles.sidebarNavLinks} aria-label="html tags">
-              <List>{tagsData}</List>
+              <React.Fragment>
+                <List>{tagsData}</List>
+              </React.Fragment>
             </nav>
             <h2 className={styles.cssTitle}>CSS</h2>
             <nav className={styles.sidebarNavLinks} aria-label="css tags">
