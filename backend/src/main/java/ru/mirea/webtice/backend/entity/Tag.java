@@ -38,14 +38,7 @@ public class Tag {
     @JsonManagedReference
     private Set<Attribute> attributes = new HashSet<>();
 
-//    @ElementCollection(fetch=FetchType.EAGER)
-//    @CollectionTable(name = "tag_attributes",
-//            joinColumns=@JoinColumn(name = "tag_id",
-//                    referencedColumnName = "id"))
-//    @Column(name = "attribute_name")
-//    private List<String> attributesName = new ArrayList<String>();
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
