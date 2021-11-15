@@ -1,37 +1,45 @@
 package ru.mirea.webtice.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import ru.mirea.webtice.backend.entity.Attribute;
 import ru.mirea.webtice.backend.entity.Tag;
 import ru.mirea.webtice.backend.service.EntityServiceImpl;
-import ru.mirea.webtice.backend.service.ParserService;
+import ru.mirea.webtice.backend.service.TagParserService;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/tag")
-public class ParserController {
-    private ParserService parserService;
+public class TagController {
+
+    @Autowired
+    private TagParserService tagParserService;
 
     @Autowired
     private EntityServiceImpl entityService;
 
-    ParserController(ParserService parserService){
-        this.parserService = parserService;
+    TagController(TagParserService parserService){
+        this.tagParserService = parserService;
     }
 
     @PostMapping("/parser")
     public void parseStart() throws IOException {
-        parserService.start();
-
+        tagParserService.start();
     }
 
     @GetMapping("/{id}")
     public Tag tagGet(@PathVariable Long id) {
         Tag tag = (Tag) entityService.getTag(id);
+        return tag;
+    }
+
+    @GetMapping("/name")
+    public Tag tagGetByName(@RequestParam String name) {
+        Tag tag = (Tag) entityService.getTagByName(name);
+        System.out.println(tag);
         return tag;
     }
 
@@ -52,6 +60,15 @@ public class ParserController {
             attrsAll = entityService.attributeGetAllWithFilter(isGlobal, isEvent);
         }
         return attrsAll;
+    }
+
+    @DeleteMapping("/{id}")
+    public HttpStatus tagDelete(@PathVariable Long id) {
+        Tag tag = (Tag) entityService.deleteTag(id);
+        if(tag == null){
+            return HttpStatus.NOT_FOUND;
+        }
+        return HttpStatus.OK;
     }
 
 }
