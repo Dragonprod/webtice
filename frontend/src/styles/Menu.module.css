@@ -3,6 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 50px;
   padding: 0.5em 1em;
   justify-content: flex-start;
   background: var(--menu-bg-clr);
@@ -60,8 +61,7 @@
   position: fixed;
   height: 100vh;
   width: 100%;
-  /* top: 56px; */
-  top: 49px;
+  top: 50px;
   background: var(--clr-bg-dark);
   flex-direction: column;
   overflow-y: auto;
@@ -115,6 +115,7 @@
 }
 @media screen and (min-width: 1025px) {
   .headerBackground {
+    height: auto;
     justify-content: space-between;
   }
   #check,

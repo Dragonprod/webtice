@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React, { PureComponent } from "react";
 import styles from "../styles//ReferenceBookPage.module.css";
+import CodeEditor from "./CodeEditor";
 
 class TagPage extends PureComponent {
   render() {
@@ -22,7 +23,8 @@ class TagPage extends PureComponent {
       <React.Fragment>
         <div className={styles.textContainer}>
           <h2 className={styles.themeTitle}>{name}</h2>
-          <p className={styles.text}>{desc}</p>
+          <p className={styles.descriptionText}>{desc}</p>
+          {/* <CodeEditor /> */}
           {isAttrs && (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="properties table">

@@ -3,3 +3,7 @@ aiohttp
 asyncio
 requests
 python-telegram-bot-pagination
+pydantic
+SQLAlchemy
+psycopg2
+typing

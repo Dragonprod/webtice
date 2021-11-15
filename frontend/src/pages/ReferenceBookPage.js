@@ -4,7 +4,6 @@ import Menu from "../components/ReferenceMenu";
 import styles from "../styles//ReferenceBookPage.module.css";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
@@ -12,8 +11,9 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import API from "../api/api";
 import TagPage from "../components/TagPage";
+import CodeEditor from "../components/CodeEditor";
 
-export default function ReferenceBook() {
+const ReferenceBook = () => {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tagPage, settagPage] = useState();
@@ -92,9 +92,13 @@ export default function ReferenceBook() {
               </List>
             </nav>
           </div>
-          <div className={styles.mainСontent}>{tagPage}</div>
+          <div className={styles.mainСontent}>
+            {tagPage}
+            {/* <CodeEditor /> */}
+          </div>
         </div>
       )}
     </>
   );
-}
+};
+export default ReferenceBook;
