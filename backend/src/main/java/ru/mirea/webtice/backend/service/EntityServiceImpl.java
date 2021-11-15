@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.mirea.webtice.backend.entity.Attribute;
 import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.entity.Tag;
@@ -59,12 +60,12 @@ public class EntityServiceImpl implements EntityService {
     }
 
     @Override
-    public Tag getTagByName(String tag_name) {
-        return tagRepository.findByFilterName(tag_name);
+    public Tag getTagByName(String tagName){
+        return tagRepository.findByFilterName(tagName);
     }
 
     @Override
-    public Style getStyle(Long id) {
+    public Style getStyle(Long id){
         return entityManager.find(Style.class, id);
     }
 
@@ -77,11 +78,10 @@ public class EntityServiceImpl implements EntityService {
     @Override
     public Style getStyleByName(String styleName) {
         return styleRepository.findByFilterName(styleName);
-
     }
 
     @Override
-    public Tag deleteTag(Long id) {
+    public Tag deleteTag (Long id){
         Tag tag = entityManager.find(Tag.class, id);
         if (tag != null) {
             Session session = entityManager.unwrap(Session.class);
@@ -104,7 +104,7 @@ public class EntityServiceImpl implements EntityService {
     }
 
     @Override
-    public Style deleteStyle(Long id) {
+    public Style deleteStyle(Long id){
         Style style = entityManager.find(Style.class, id);
         if (style != null) {
             Session session = entityManager.unwrap(Session.class);
@@ -125,5 +125,4 @@ public class EntityServiceImpl implements EntityService {
         }
         return style;
     }
-
 }

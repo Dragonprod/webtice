@@ -18,3 +18,4 @@ public interface EntityService {
     public Tag deleteTag(Long id);
     public Style deleteStyle(Long id);
 }
+
