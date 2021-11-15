@@ -12,6 +12,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import API from "../api/api";
 import TagPage from "../components/TagPage";
 import CodeEditor from "../components/CodeEditor";
+import Skeleton from '@mui/material/Skeleton';
 
 const ReferenceBook = () => {
   const [tags, setTags] = useState([]);
@@ -59,9 +60,36 @@ const ReferenceBook = () => {
     <>
       <Menu />
       {loading && (
-        <div className={styles.mainСontent}>
-          <CircularProgress />
-        </div>
+        <>
+          {/* <CircularProgress /> */}
+          <div className={styles.mainGrid}>
+            <div className={styles.sidebar}>
+              <Skeleton variant="rectangular" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '20px' }} />
+              <Skeleton variant="text" height={60} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', marginTop: '10px', width: '70%' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+
+              <Skeleton variant="text" height={60} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', marginTop: '10px', width: '70%' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', margin: '-4px 0 0 30px' }} />
+            </div>
+            <div className={styles.mainСontent}>
+              <Skeleton variant="text" width={300} height={70} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '10px', marginTop: '-13px' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '5px', margin: '-8px 0' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '5px', margin: '-8px 0' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '5px', margin: '-8px 0' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '5px', margin: '-8px 0' }} />
+              <Skeleton variant="text" height={40} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '5px', margin: '-8px 0' }} />
+              <Skeleton variant="rectangular" height={500} sx={{ bgcolor: 'rgba(255,255,255,.1)', borderRadius: '20px', marginTop: '40px' }} />
+            </div>
+          </div>
+        </>
       )}
       {!loading && (
         <div className={styles.mainGrid}>

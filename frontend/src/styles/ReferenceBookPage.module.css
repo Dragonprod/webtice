@@ -80,12 +80,7 @@
   margin-bottom: 3em;
   color: #e3e3e3;
 }
-th:nth-child(1),
-th:nth-child(2) {
-  color: var(--accent-clr);
-  font-weight: 700;
-  font-size: 1.2rem;
-}
+
 th:nth-child(1),
 th:nth-child(2),
 td:nth-child(1),
@@ -101,6 +96,12 @@ td:nth-child(1) {
 td:nth-child(2) {
   border-left: none;
 }
+th:nth-child(1),
+th:nth-child(2) {
+  color: var(--accent-clr);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
 
 @media screen and (min-width: 1025px) {
   .mainGrid {
@@ -113,10 +114,12 @@ td:nth-child(2) {
     position: fixed;
     height: calc(100% - 93px);
     overflow-x: hidden;
+    width: 275px;
     max-width: 275px;
     top: 93px;
+    left: 0;
   }
   .mainСontent {
-    padding: 8em 2em 2em;
+    padding: 7em 2em 2em;
   }
 }
