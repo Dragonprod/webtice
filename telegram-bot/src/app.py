@@ -43,14 +43,26 @@ class Bot():
         self.logs.addLog(update)
 
     def helpHandler(self, update: Update, context: CallbackContext) -> None:
-        helpMessage = "<b>Список моих команд</b>:\n/start - начать работу со мной\n/help - показать список моих команд\n/tag <code>тег</code> - посмотреть информацию о теге\n/tests - посмотреть список доступных тестов"
+        helpMessage = "<b>Список моих команд</b>:\n/start - начать работу со мной\n/help - показать список моих команд\n/tag <code>тег</code> - посмотреть информацию о HTML теге\n/css <code>св-во</code> - посмотреть информацию о CSS св-ве\n/tests - посмотреть список доступных тестов"
         update.message.reply_html(helpMessage)
         self.logs.addLog(update)
+
+    def cssHandler(self, update: Update, context: CallbackContext) -> None:
+        if len(context.args) == 1:
+            style = context.args[0]
+            styleInfo = self.api.getCssTagInfo(style)
+            update.message.reply_html(
+                f'<b>Свойство:</b> <code>{styleInfo["name"]}</code>\n\n<b>Описание:</b> {styleInfo["description"]}\n\n<b>Синтаксис:</b> <code>{styleInfo["syntax"]}</code>')
+            self.logs.addLog(update)
+        else:
+            update.effective_message.reply_html(
+                "Ошибка. Используйте /css <code>св-во</code>")
+            self.logs.addLog(update)
 
     def tagHandler(self, update: Update, context: CallbackContext) -> None:
         if len(context.args) == 1:
             tag = context.args[0]
-            tagInfo = self.api.getTagInfo(tag)
+            tagInfo = self.api.getHtmlTagInfo(tag)
 
             self.attributes = []
             attributesMessage = ''
@@ -74,7 +86,8 @@ class Bot():
 
             self.logs.addLog(update)
         else:
-            update.effective_message.reply_html("Ошибка. Используйте /tag <code>тег</code>")
+            update.effective_message.reply_html(
+                "Ошибка. Используйте /tag <code>тег</code>")
             self.logs.addLog(update)
 
     def attrPageCallback(self, update: Update, context: CallbackContext) -> None:
@@ -161,6 +174,7 @@ class Bot():
         dispatcher.add_handler(CommandHandler('tag', self.tagHandler))
         dispatcher.add_handler(CallbackQueryHandler(
             self.attrPageCallback, pattern='^attr#'))
+        dispatcher.add_handler(CommandHandler('css', self.cssHandler))
 
         dispatcher.add_handler(CommandHandler('github', self.gitHubHandler))
         dispatcher.add_handler(MessageHandler(Filters.regex(
