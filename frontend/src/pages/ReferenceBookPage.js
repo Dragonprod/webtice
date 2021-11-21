@@ -10,30 +10,23 @@ import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import API from "../api/api";
 import TagPage from "../components/TagPage";
-import CodeEditor from "../components/CodeEditor";
 import Skeleton from "@mui/material/Skeleton";
-
-
-import ListItemButton from '@mui/material/ListItemButton';
-
-import Collapse from '@mui/material/Collapse';
-
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
+import CssPage from "../components/CssPage";
 
 
 const ReferenceBook = () => {
   const [htmlTags, sethtmlTags] = useState([]);
   const [cssTags, setcssTags] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [tagPage, settagPage] = useState();
-  //const [open, setOpen] = useState(true);
+  const [htmlPage, sethtmlPage] = useState(true);
+  const [htmlTagPage, sethtmlTagPage] = useState();
+  const [cssTagPage, setcssTagPage] = useState();
 
   useEffect(() => {
     const getTagsData = async () => {
       const htmlResponse = await API.get("/tag");
       sethtmlTags(htmlResponse.data);
-      settagPage(
+      sethtmlTagPage(
         <TagPage
           name={htmlResponse.data[0].name}
           description={htmlResponse.data[0].description}
@@ -50,25 +43,35 @@ const ReferenceBook = () => {
     getTagsData();
   }, []); 
 
-  // const handleClick = () => {
-  //   setOpen(!open);
-  // };
-
-  const handleItemChange = (tag) => {
-    settagPage(
+  const handleHtmlItemChange = (htmlTag) => {
+    sethtmlTagPage(
       <TagPage
-        name={tag.name}
-        description={tag.description}
-        attrs={tag.attributes}
+        name={htmlTag.name}
+        description={htmlTag.description}
+        attrs={htmlTag.attributes}
       />
     );
+    sethtmlPage(true);
   };
+
+  const handleCssItemChange = (cssTag) => {
+    setcssTagPage(
+      <CssPage
+        name={cssTag.styleName}
+        description={cssTag.description}
+        syntax={cssTag.syntax}
+        values={cssTag.values}
+      />
+    );
+    sethtmlPage(false);
+  };
+
 
   const htmlTagsData = htmlTags.map((htmlTag) => (
     <ListItem
       key={htmlTag.id}
       onClick={() => {
-        handleItemChange(htmlTag);
+        handleHtmlItemChange(htmlTag);
       }}
     >
       <ListItemText primary={htmlTag.name} />
@@ -78,9 +81,9 @@ const ReferenceBook = () => {
   const cssTagsData = cssTags.map((cssTag) => (
     <ListItem
       key={cssTag.id}
-      // onClick={() => {
-      //   handleItemChange(cssTag);
-      // }}
+      onClick={() => {
+        handleCssItemChange(cssTag);
+      }}
     >
       <ListItemText primary={cssTag.styleName} />
     </ListItem>
@@ -289,21 +292,10 @@ const ReferenceBook = () => {
                 freeSolo
                 options={htmlTags.map((option) => option.name)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Поиск" />
+                  <TextField {...params} onInputChange={console.log("e")} label="Поиск" />
                 )}
               />
             </Stack>
-            {/* <ListItemButton onClick={handleClick}>
-              <ListItemText primary="HTML" />
-              {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <React.Fragment>
-                  <List>{htmlTagsData}</List>
-                </React.Fragment>
-              </List>
-            </Collapse> */}
             <h2 className={styles.htmlTitle}>HTML</h2>
             <nav className={styles.sidebarNavLinks} aria-label="html tags">
               <React.Fragment>
@@ -318,8 +310,8 @@ const ReferenceBook = () => {
             </nav>
           </div>
           <div className={styles.mainСontent}>
-            {tagPage}
-            {/* <CodeEditor /> */}
+            {htmlPage && htmlTagPage}
+            {!htmlPage && cssTagPage}
           </div>
         </div>
       )}
