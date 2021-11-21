@@ -1,18 +1,17 @@
 /* eslint-disable no-unused-vars */
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import Menu from "./components/Menu";
 import LandingPage from "./pages/LangingPage";
 
 test("renders main title part one", () => {
   render(<LandingPage />);
-
   const titlePartOne = screen.getByText(/Начни учиться прямо/i);
   expect(titlePartOne).toBeInTheDocument();
 });
 
 test("renders main title part two", () => {
   render(<LandingPage />);
-
   const titlePartTwo = screen.getByText(/сейчас/i);
   expect(titlePartTwo).toBeInTheDocument();
 });
@@ -46,17 +45,3 @@ test("renders menu", () => {
   const aboutText = screen.getByText(/О проекте/i);
   expect(aboutText).toBeInTheDocument();
 });
-
-// test('renders tags menu', () => {
-//   render(<ReferenceBookMenu/>);
-
-//   const logoText = screen.getByText(/Webtice/i);
-//   expect(logoText).toBeInTheDocument();
-
-//   const mainText = screen.getByText(/Главная/i);
-//   expect(mainText).toBeInTheDocument();
-
-//   const gitText = screen.getByText(/GitHub/i);
-//   expect(gitText).toBeInTheDocument();
-
-// });
