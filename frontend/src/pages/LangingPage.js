@@ -147,7 +147,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className={styles.footer}>© 2021 MIREA NINJA.</footer>
+      <footer className={styles.footer}>© 2021 MIREA NINJA</footer>
     </>
   );
 }
