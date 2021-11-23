@@ -4,54 +4,88 @@ import Menu from "../components/ReferenceMenu";
 import styles from "../styles//ReferenceBookPage.module.css";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
 import API from "../api/api";
 import TagPage from "../components/TagPage";
+import Skeleton from "@mui/material/Skeleton";
+import CssPage from "../components/CssPage";
 
-export default function ReferenceBook() {
-  const [tags, setTags] = useState([]);
+
+const ReferenceBook = () => {
+  const [htmlTags, sethtmlTags] = useState([]);
+  const [cssTags, setcssTags] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [tagPage, settagPage] = useState();
+  const [htmlPage, sethtmlPage] = useState(true);
+  const [htmlTagPage, sethtmlTagPage] = useState();
+  const [cssTagPage, setcssTagPage] = useState();
 
   useEffect(() => {
-    const getTagsApi = async () => {
-      const response = await API.get("/tag");
-      setTags(response.data);
-      settagPage(
+    const getTagsData = async () => {
+      const htmlResponse = await API.get("/tag");
+      sethtmlTags(htmlResponse.data);
+      sethtmlTagPage(
         <TagPage
-          name={response.data[0].name}
-          description={response.data[0].description}
-          attrs={response.data[0].attributes}
+          name={htmlResponse.data[0].name}
+          description={htmlResponse.data[0].description}
+          attrs={htmlResponse.data[0].attributes}
         />
       );
+
+      const cssResponse = await API.get("/style");
+      setcssTags(cssResponse.data);
+
       setLoading(false);
     };
-    getTagsApi();
-  }, []);
 
-  const handleItemChange = (tag) => {
-    settagPage(
+    getTagsData();
+  }, []); 
+
+  const handleHtmlItemChange = (htmlTag) => {
+    sethtmlTagPage(
       <TagPage
-        name={tag.name}
-        description={tag.description}
-        attrs={tag.attributes}
+        name={htmlTag.name}
+        description={htmlTag.description}
+        attrs={htmlTag.attributes}
       />
     );
+    sethtmlPage(true);
   };
 
-  const tagsData = tags.map((tag) => (
+  const handleCssItemChange = (cssTag) => {
+    setcssTagPage(
+      <CssPage
+        name={cssTag.styleName}
+        description={cssTag.description}
+        syntax={cssTag.syntax}
+        values={cssTag.values}
+      />
+    );
+    sethtmlPage(false);
+  };
+
+
+  const htmlTagsData = htmlTags.map((htmlTag) => (
     <ListItem
-      key={tag.id}
+      key={htmlTag.id}
       onClick={() => {
-        handleItemChange(tag);
+        handleHtmlItemChange(htmlTag);
       }}
     >
-      <ListItemText primary={tag.name} />
+      <ListItemText primary={htmlTag.name} />
+    </ListItem>
+  ));
+
+  const cssTagsData = cssTags.map((cssTag) => (
+    <ListItem
+      key={cssTag.id}
+      onClick={() => {
+        handleCssItemChange(cssTag);
+      }}
+    >
+      <ListItemText primary={cssTag.styleName} />
     </ListItem>
   ));
 
@@ -59,9 +93,194 @@ export default function ReferenceBook() {
     <>
       <Menu />
       {loading && (
-        <div className={styles.mainСontent}>
-          <CircularProgress />
-        </div>
+        <>
+          <div className={styles.mainGrid}>
+            <div className={styles.sidebar}>
+              <Skeleton
+                variant="rectangular"
+                height={40}
+                sx={{ bgcolor: "rgba(255,255,255,.1)", borderRadius: "20px" }}
+              />
+              <Skeleton
+                variant="text"
+                height={60}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  marginTop: "10px",
+                  width: "70%",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+
+              <Skeleton
+                variant="text"
+                height={60}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  marginTop: "10px",
+                  width: "70%",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  margin: "-4px 0 0 30px",
+                }}
+              />
+            </div>
+            <div className={styles.mainСontent}>
+              <Skeleton
+                variant="text"
+                width={300}
+                height={70}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "10px",
+                  marginTop: "-13px",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "5px",
+                  margin: "-8px 0",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "5px",
+                  margin: "-8px 0",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "5px",
+                  margin: "-8px 0",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "5px",
+                  margin: "-8px 0",
+                }}
+              />
+              <Skeleton
+                variant="text"
+                height={40}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "5px",
+                  margin: "-8px 0",
+                }}
+              />
+              <Skeleton
+                variant="rectangular"
+                height={500}
+                sx={{
+                  bgcolor: "rgba(255,255,255,.1)",
+                  borderRadius: "20px",
+                  marginTop: "40px",
+                }}
+              />
+            </div>
+          </div>
+        </>
       )}
       {!loading && (
         <div className={styles.mainGrid}>
@@ -71,30 +290,32 @@ export default function ReferenceBook() {
                 className={styles.searchbar}
                 id="search-main"
                 freeSolo
-                options={tags.map((option) => option.name)}
+                options={htmlTags.map((option) => option.name)}
                 renderInput={(params) => (
-                  <TextField {...params} label="Поиск" />
+                  <TextField {...params} onInputChange={console.log("e")} label="Поиск" />
                 )}
               />
             </Stack>
             <h2 className={styles.htmlTitle}>HTML</h2>
             <nav className={styles.sidebarNavLinks} aria-label="html tags">
               <React.Fragment>
-                <List>{tagsData}</List>
+                <List>{htmlTagsData}</List>
               </React.Fragment>
             </nav>
             <h2 className={styles.cssTitle}>CSS</h2>
             <nav className={styles.sidebarNavLinks} aria-label="css tags">
-              <List>
-                <ListItem>
-                  <ListItemText primary="css-tag" />
-                </ListItem>
-              </List>
+              <React.Fragment>
+                <List>{cssTagsData}</List>
+              </React.Fragment>
             </nav>
           </div>
-          <div className={styles.mainСontent}>{tagPage}</div>
+          <div className={styles.mainСontent}>
+            {htmlPage && htmlTagPage}
+            {!htmlPage && cssTagPage}
+          </div>
         </div>
       )}
     </>
   );
-}
+};
+export default ReferenceBook;

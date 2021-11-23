@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.HashSet;
 
 @Service
-public class ParserService<Set> {
+public class TagParserService {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -26,7 +26,7 @@ public class ParserService<Set> {
     private final String httpAttrEvents = "http://htmlbook.ru/html/attr/event";
     private java.util.Set<Attribute> globalAttributes = new HashSet<>();
     private java.util.Set<Attribute> eventsAttributes = new HashSet<>();
-    public ParserService() {}
+    public TagParserService() {}
 
     public void parseTag(String http) throws IOException {
         Document doc = Jsoup.connect(http).get();

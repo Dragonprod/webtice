@@ -10,12 +10,11 @@ import {
 } from "@mui/material";
 import React, { PureComponent } from "react";
 import styles from "../styles//ReferenceBookPage.module.css";
-import CodeEditor from "./CodeEditor";
 
-class TagPage extends PureComponent {
+class CssPage extends PureComponent {
   render() {
-    const { name, description, attrs } = this.props;
-    const isAttrs = attrs.length > 0 ? true : false;
+    const { name, description, syntax, values } = this.props;
+    const isValues = values.length > 0 ? true : false;
 
     let desc = description.length > 0 ? description : "Описание отсутствует";
 
@@ -24,8 +23,8 @@ class TagPage extends PureComponent {
         <div className={styles.textContainer}>
           <h2 className={styles.themeTitle}>{name}</h2>
           <p className={styles.descriptionText}>{desc}</p>
-          {/* <CodeEditor /> */}
-          {isAttrs && (
+          <code>{syntax}</code>
+          {isValues && (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="properties table">
                 <TableHead>
@@ -35,12 +34,12 @@ class TagPage extends PureComponent {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {attrs.map((attr) => (
+                  {values.map((value) => (
                     <TableRow
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell align="left">{attr.attributeName}</TableCell>
-                      <TableCell align="left">{attr.description}</TableCell>
+                      <TableCell align="left">{value.valueName}</TableCell>
+                      <TableCell align="left">{value.description}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -53,4 +52,4 @@ class TagPage extends PureComponent {
   }
 }
 
-export default TagPage;
+export default CssPage;
