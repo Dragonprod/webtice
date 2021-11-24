@@ -39,7 +39,6 @@ public class TagController {
     @GetMapping("/name")
     public Tag tagGetByName(@RequestParam String name) {
         Tag tag = (Tag) entityService.getTagByName(name);
-        System.out.println(tag);
         return tag;
     }
 
