@@ -61,7 +61,7 @@ class Bot():
 
     def tagHandler(self, update: Update, context: CallbackContext) -> None:
         if len(context.args) == 1:
-            tag = context.args[0]
+            tag = f'<{context.args[0]}>'
             tagInfo = self.api.getHtmlTagInfo(tag)
 
             self.attributes = []
