@@ -62,29 +62,36 @@ const ReferenceBook = () => {
   }, []);
 
   const handleSearchChange = (event, param) => {
-    if (param.startsWith('<')) {
-      const htmlTag = findHtmlTagByName(param, htmlTags)
-      sethtmlTagPage(
-        <TagPage
-          name={htmlTag.name}
-          description={htmlTag.description}
-          attrs={htmlTag.attributes}
-        />
-      );
-      sethtmlPage(true);
+    if (param !== undefined && param !== null && param !== '') {
+      if (param.startsWith('<')) {
+        const htmlTag = findHtmlTagByName(param, htmlTags)
+        if (htmlTag !== undefined) {
+          sethtmlTagPage(
+            <TagPage
+              name={htmlTag.name}
+              description={htmlTag.description}
+              attrs={htmlTag.attributes}
+            />
+          );
+          sethtmlPage(true);
+        }
+      }
+      else {
+        const cssTag = findCssTagByName(param, cssTags)
+        if (cssTag !== undefined) {
+          setcssTagPage(
+            <CssPage
+              name={cssTag.styleName}
+              description={cssTag.description}
+              syntax={cssTag.syntax}
+              values={cssTag.values}
+            />
+          );
+          sethtmlPage(false);
+        }
+      }
     }
-    else {
-      const cssTag = findCssTagByName(param, cssTags)
-      setcssTagPage(
-        <CssPage
-          name={cssTag.styleName}
-          description={cssTag.description}
-          syntax={cssTag.syntax}
-          values={cssTag.values}
-        />
-      );
-      sethtmlPage(false);
-    }
+
   }
 
   const handleOpenHtmlChange = () => {
