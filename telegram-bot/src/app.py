@@ -35,7 +35,7 @@ class Bot():
                 ['{0} Сайт проекта'.format(u"\U0001f310")],
                 ['{0} GitHub'.format(u"\U0001f525")]
             ]
-        welcomeMessage = "{0} Привет, <b>{1}</b>!\n\nМеня зовут МАРГИНШТЕРН, я бот проекта <b>Webtice</b>, разработанного студентами <b>РТУ МИРЭА</b>.\n\nСписок моих команд можно увидеть, отправив мне команду /help".format(
+        welcomeMessage = "{0} Привет, <b>{1}</b>!\n\nМеня зовут Олег, я бот проекта <b>Webtice</b>, разработанного студентами <b>РТУ МИРЭА</b>.\n\nСписок моих команд можно увидеть, отправив мне команду /help".format(
             u"\U0001f44b", update.message.chat.first_name)
         update.message.reply_html(welcomeMessage, reply_markup=ReplyKeyboardMarkup(
             reply_keyboard, resize_keyboard=True, one_time_keyboard=False))
