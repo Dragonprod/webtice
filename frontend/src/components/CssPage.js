@@ -23,9 +23,26 @@ class CssPage extends PureComponent {
         <div className={styles.textContainer}>
           <h2 className={styles.themeTitle}>{name}</h2>
           <p className={styles.descriptionText}>{desc}</p>
-          <code className={`${syntax.length > 0 ? styles.codeCard : ''}`}>
-            {syntax}
-          </code>
+          <div className={`${syntax.length > 0 ? styles.codeCard : ''}`}>
+            <div
+              className={`${
+                syntax.length > 0 ? styles.upperButtonsContainer : ''
+              }`}>
+              <span
+                className={`${
+                  syntax.length > 0 ? styles.redButton : ''
+                }`}></span>
+              <span
+                className={`${
+                  syntax.length > 0 ? styles.yellowButton : ''
+                }`}></span>
+              <span
+                className={`${
+                  syntax.length > 0 ? styles.greenButton : ''
+                }`}></span>
+            </div>
+            <code>{syntax}</code>
+          </div>
           {isValues && (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label='properties table'>
