@@ -343,7 +343,7 @@ const ReferenceBook = () => {
                 onChange={(event, value) => { handleSearchChange(event, value) }}
                 id="search-main"
                 freeSolo
-                options={htmlTags.map((option) => option.name)}
+                options={htmlTags.map((option) => option.name).concat(cssTags.map((option) => option.styleName))}
                 renderInput={(params) => (
                   <TextField {...params} label="Поиск" />
                 )}
