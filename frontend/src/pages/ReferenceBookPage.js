@@ -13,6 +13,10 @@ import TagPage from "../components/TagPage";
 import Skeleton from "@mui/material/Skeleton";
 import CssPage from "../components/CssPage";
 
+import ListItemButton from '@mui/material/ListItemButton';
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 const ReferenceBook = () => {
   const [htmlTags, sethtmlTags] = useState([]);
@@ -21,6 +25,8 @@ const ReferenceBook = () => {
   const [htmlPage, sethtmlPage] = useState(true);
   const [htmlTagPage, sethtmlTagPage] = useState();
   const [cssTagPage, setcssTagPage] = useState();
+  const [openHtml, setopenHtml] = useState(false);
+  const [openCss, setopenCss] = useState(false);
 
   useEffect(() => {
     const getTagsData = async () => {
@@ -41,7 +47,15 @@ const ReferenceBook = () => {
     };
 
     getTagsData();
-  }, []); 
+  }, []);
+
+  const handleOpenHtmlChange = () => {
+    setopenHtml(!openHtml)
+  }
+
+  const handleOpenCssChange = () => {
+    setopenCss(!openCss)
+  }
 
   const handleHtmlItemChange = (htmlTag) => {
     sethtmlTagPage(
@@ -296,6 +310,29 @@ const ReferenceBook = () => {
                 )}
               />
             </Stack>
+
+            <List>
+              <ListItemButton onClick={handleOpenHtmlChange}>
+                <ListItemText disablePadding primary="HTML" />
+                {openHtml ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openHtml} timeout="auto" unmountOnExit>
+                <React.Fragment>
+                  <List component="div">{htmlTagsData}</List>
+                </React.Fragment>
+              </Collapse>
+
+              <ListItemButton onClick={handleOpenCssChange}>
+                <ListItemText disablePadding primary="CSS" />
+                {openCss ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openCss} timeout="auto" unmountOnExit>
+                <React.Fragment>
+                  <List>{cssTagsData}</List>
+                </React.Fragment>
+              </Collapse>
+            </List>
+
             <h2 className={styles.htmlTitle}>HTML</h2>
             <nav className={styles.sidebarNavLinks} aria-label="html tags">
               <React.Fragment>
