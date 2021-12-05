@@ -26,7 +26,7 @@ function findHtmlTagByName(name, htmlTags) {
 
 function findCssTagByName(name, cssTags) {
   for (let i = 0; i < cssTags.length; i++)
-    if (cssTags[i].name === name)
+    if (cssTags[i].styleName === name)
       return cssTags[i]
 }
 
