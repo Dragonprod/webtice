@@ -18,6 +18,18 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 
+function findHtmlTagByName(name, htmlTags) {
+  for (let i = 0; i < htmlTags.length; i++)
+    if (htmlTags[i].name === name)
+      return htmlTags[i]
+}
+
+function findCssTagByName(name, cssTags) {
+  for (let i = 0; i < cssTags.length; i++)
+    if (cssTags[i].name === name)
+      return cssTags[i]
+}
+
 const ReferenceBook = () => {
   const [htmlTags, sethtmlTags] = useState([]);
   const [cssTags, setcssTags] = useState([]);
@@ -48,6 +60,32 @@ const ReferenceBook = () => {
 
     getTagsData();
   }, []);
+
+  const handleSearchChange = (event, param) => {
+    if (param.startsWith('<')) {
+      const htmlTag = findHtmlTagByName(param, htmlTags)
+      sethtmlTagPage(
+        <TagPage
+          name={htmlTag.name}
+          description={htmlTag.description}
+          attrs={htmlTag.attributes}
+        />
+      );
+      sethtmlPage(true);
+    }
+    else {
+      const cssTag = findCssTagByName(param, cssTags)
+      setcssTagPage(
+        <CssPage
+          name={cssTag.styleName}
+          description={cssTag.description}
+          syntax={cssTag.syntax}
+          values={cssTag.values}
+        />
+      );
+      sethtmlPage(false);
+    }
+  }
 
   const handleOpenHtmlChange = () => {
     setopenHtml(!openHtml)
@@ -302,11 +340,12 @@ const ReferenceBook = () => {
             <Stack spacing={2} sx={{ width: 240 }}>
               <Autocomplete
                 className={styles.searchbar}
+                onChange={(event, value) => { handleSearchChange(event, value) }}
                 id="search-main"
                 freeSolo
                 options={htmlTags.map((option) => option.name)}
                 renderInput={(params) => (
-                  <TextField {...params} onInputChange={console.log("e")} label="Поиск" />
+                  <TextField {...params} label="Поиск" />
                 )}
               />
             </Stack>
