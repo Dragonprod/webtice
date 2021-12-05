@@ -1,14 +1,18 @@
 package ru.mirea.webtice.backend.service;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mirea.webtice.backend.entity.Attribute;
+import ru.mirea.webtice.backend.entity.Question;
 import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.entity.Tag;
 import ru.mirea.webtice.backend.repository.AttributeRepository;
+import ru.mirea.webtice.backend.repository.QuestionRepository;
 import ru.mirea.webtice.backend.repository.StyleRepository;
 import ru.mirea.webtice.backend.repository.TagRepository;
 import javax.persistence.EntityManager;
@@ -26,6 +30,9 @@ public class EntityServiceImpl implements EntityService {
 
     @Autowired
     private StyleRepository styleRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -124,5 +131,15 @@ public class EntityServiceImpl implements EntityService {
             }
         }
         return style;
+    }
+
+    @Override
+    public Question getQuestion(Long id) {
+        return entityManager.find(Question.class , id);
+    }
+
+    @Override
+    public List<Question> getRandomQuestions(){
+        return entityManager.createQuery("SELECT q FROM Question q ORDER BY rand()").setMaxResults(10).getResultList();
     }
 }

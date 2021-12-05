@@ -13,6 +13,22 @@ import TagPage from "../components/TagPage";
 import Skeleton from "@mui/material/Skeleton";
 import CssPage from "../components/CssPage";
 
+import ListItemButton from '@mui/material/ListItemButton';
+import Collapse from '@mui/material/Collapse';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+function findHtmlTagByName(name, htmlTags) {
+  for (let i = 0; i < htmlTags.length; i++)
+    if (htmlTags[i].name === name)
+      return htmlTags[i]
+}
+
+function findCssTagByName(name, cssTags) {
+  for (let i = 0; i < cssTags.length; i++)
+    if (cssTags[i].name === name)
+      return cssTags[i]
+}
 
 const ReferenceBook = () => {
   const [htmlTags, sethtmlTags] = useState([]);
@@ -21,6 +37,8 @@ const ReferenceBook = () => {
   const [htmlPage, sethtmlPage] = useState(true);
   const [htmlTagPage, sethtmlTagPage] = useState();
   const [cssTagPage, setcssTagPage] = useState();
+  const [openHtml, setopenHtml] = useState(false);
+  const [openCss, setopenCss] = useState(false);
 
   useEffect(() => {
     const getTagsData = async () => {
@@ -41,7 +59,48 @@ const ReferenceBook = () => {
     };
 
     getTagsData();
-  }, []); 
+  }, []);
+
+  const handleSearchChange = (event, param) => {
+    if (param !== undefined && param !== null && param !== '') {
+      if (param.startsWith('<')) {
+        const htmlTag = findHtmlTagByName(param, htmlTags)
+        if (htmlTag !== undefined) {
+          sethtmlTagPage(
+            <TagPage
+              name={htmlTag.name}
+              description={htmlTag.description}
+              attrs={htmlTag.attributes}
+            />
+          );
+          sethtmlPage(true);
+        }
+      }
+      else {
+        const cssTag = findCssTagByName(param, cssTags)
+        if (cssTag !== undefined) {
+          setcssTagPage(
+            <CssPage
+              name={cssTag.styleName}
+              description={cssTag.description}
+              syntax={cssTag.syntax}
+              values={cssTag.values}
+            />
+          );
+          sethtmlPage(false);
+        }
+      }
+    }
+
+  }
+
+  const handleOpenHtmlChange = () => {
+    setopenHtml(!openHtml)
+  }
+
+  const handleOpenCssChange = () => {
+    setopenCss(!openCss)
+  }
 
   const handleHtmlItemChange = (htmlTag) => {
     sethtmlTagPage(
@@ -288,14 +347,38 @@ const ReferenceBook = () => {
             <Stack spacing={2} sx={{ width: 240 }}>
               <Autocomplete
                 className={styles.searchbar}
+                onChange={(event, value) => { handleSearchChange(event, value) }}
                 id="search-main"
                 freeSolo
-                options={htmlTags.map((option) => option.name)}
+                options={htmlTags.map((option) => option.name).concat(cssTags.map((option) => option.styleName))}
                 renderInput={(params) => (
-                  <TextField {...params} onInputChange={console.log("e")} label="Поиск" />
+                  <TextField {...params} label="Поиск" />
                 )}
               />
             </Stack>
+
+            <List>
+              <ListItemButton onClick={handleOpenHtmlChange}>
+                <ListItemText disablePadding primary="HTML" />
+                {openHtml ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openHtml} timeout="auto" unmountOnExit>
+                <React.Fragment>
+                  <List component="div">{htmlTagsData}</List>
+                </React.Fragment>
+              </Collapse>
+
+              <ListItemButton onClick={handleOpenCssChange}>
+                <ListItemText disablePadding primary="CSS" />
+                {openCss ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={openCss} timeout="auto" unmountOnExit>
+                <React.Fragment>
+                  <List>{cssTagsData}</List>
+                </React.Fragment>
+              </Collapse>
+            </List>
+
             <h2 className={styles.htmlTitle}>HTML</h2>
             <nav className={styles.sidebarNavLinks} aria-label="html tags">
               <React.Fragment>
