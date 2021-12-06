@@ -8,27 +8,28 @@ import FormLabel from '@mui/material/FormLabel';
 import styles from './Question.module.css';
 
 export default function Question(props) {
-    const theme = props.theme;
-    const questionName = props.questionName;
-    const answers = props.answers;
+  const theme = props.theme;
+  const questionName = props.questionName;
+  const answers = props.answers;
 
-
-
-    return (
-        <div>
-            <h1>{theme}</h1>
-            <h1>{questionName}</h1>
-            <FormControl component="fieldset">
-                <RadioGroup
-                    aria-label="gender"
-                    defaultValue="female"
-                    name="radio-buttons-group"
-                >
-                    {answers.map((ans) => (
-                        <FormControlLabel value={ans.answerName} control={<Radio />} label={ans.answerName} />
-                    ))}
-                </RadioGroup>
-            </FormControl>
-        </div>
-    );
+  return (
+    <div className={styles.questionCard}>
+      <h1 className={styles.testChoiceTitle}>{theme}</h1>
+      <h1>{questionName}</h1>
+      <FormControl component='fieldset'>
+        <RadioGroup
+          aria-label='gender'
+          defaultValue='female'
+          name='radio-buttons-group'>
+          {answers.map(ans => (
+            <FormControlLabel
+              value={ans.answerName}
+              control={<Radio />}
+              label={ans.answerName}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
+    </div>
+  );
 }

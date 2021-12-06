@@ -5,6 +5,7 @@ import LandingPage from './pages/landing/LangingPage';
 import ReferenceBookPage from './pages/referencebook/ReferenceBookPage';
 import ErrorPage from './pages/system/ErrorPage';
 import TestChoicePage from './pages/test-choice/TestChoicePage';
+import TestPage from './pages/test/TestPage';
 
 function App() {
   // TODO: Add components for exam and learn path
@@ -18,6 +19,7 @@ function App() {
             <Route path='/exam' component={LandingPage} />
             <Route path='/learn' component={LandingPage} />
             <Route path='/test-choice' component={TestChoicePage} />
+            <Route path='/test' component={TestPage} />
             <Route path='*' component={ErrorPage} />
           </Switch>
         </BrowserRouter>
