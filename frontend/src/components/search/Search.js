@@ -12,8 +12,7 @@ export default function Search(props) {
                     '& input': {
                         width: 200,
                         bgcolor: 'background.paper',
-                        color: (theme) =>
-                            theme.palette.getContrastText(theme.palette.background.paper),
+                        color: "#2a2a3f",
                     },
                 }}
                 id="custom-input-demo"
