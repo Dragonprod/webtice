@@ -1,26 +1,26 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import styles from "./LandingPage.module.css";
+import React from 'react';
+import styles from './LandingPage.module.css';
 
-import handbookIcon from "../../assets/handbookIcon.svg";
-import codeIcon from "../../assets/codeIcon.svg";
-import examIcon from "../../assets/examIcon.svg";
+import handbookIcon from '../../assets/handbookIcon.svg';
+import codeIcon from '../../assets/codeIcon.svg';
+import examIcon from '../../assets/examIcon.svg';
 
-import codeImg from "../../assets/codeImg.svg";
-import examImg from "../../assets/examImg.svg";
-import handbookImg from "../../assets/handbookImg.svg";
-import projectImg from "../../assets/projectImg.svg";
+import codeImg from '../../assets/codeImg.svg';
+import examImg from '../../assets/examImg.svg';
+import handbookImg from '../../assets/handbookImg.svg';
+import projectImg from '../../assets/projectImg.svg';
 
-import Menu from "../../components/menu/Menu.js";
+import Menu from '../../components/menu/Menu.js';
 
 export default function LandingPage() {
   return (
     <>
       <Menu />
-      <section id="hero" className={styles.hero}>
+      <section id='hero' className={styles.hero}>
         <div className={styles.heroContentContainer}>
           <h1 className={styles.heroTitle}>
-            Начни учиться прямо{" "}
+            Начни учиться прямо{' '}
             <span className={styles.highlightSpan}>сейчас</span>
           </h1>
           <p className={styles.heroSubtitle}>
@@ -33,16 +33,15 @@ export default function LandingPage() {
               <img
                 className={styles.heroButtonIcon}
                 src={handbookIcon}
-                alt="Иконка справочника"
+                alt='Иконка справочника'
               />
               <p className={styles.text}>
                 Интерактивный справочник по HTML и CSS элементам с возможность
                 просмотра изменений в реальном времени
               </p>
               <a
-                href="/refbook"
-                className={`${styles["go-to-btn"]} ${styles["go-to-hand-book-btn"]}`}
-              >
+                href='/refbook'
+                className={`${styles['go-to-btn']} ${styles['go-to-hand-book-btn']}`}>
                 Веб-справочник
               </a>
             </div>
@@ -50,41 +49,39 @@ export default function LandingPage() {
               <img
                 className={styles.heroButtonIcon}
                 src={codeIcon}
-                alt="Иконка кода"
+                alt='Иконка кода'
               />
               <p className={styles.text}>
-                Онлайн задания по веб-разработке(преимущественно верстка)
+                Онлайн задания по веб-разработке (преимущественно верстка)
               </p>
               <a
-                href="/"
-                className={`${styles["go-to-btn"]} ${styles["go-to-online-coding-btn"]}`}
-              >
-                Онлайн Кодинг
+                href='/'
+                className={`${styles['go-to-btn']} ${styles['go-to-online-coding-btn']}`}>
+                Онлайн Тест
               </a>
             </div>
             <div className={styles.heroButtonCard}>
               <img
                 className={styles.heroButtonIcon}
                 src={examIcon}
-                alt="Иконка экзамена"
+                alt='Иконка экзамена'
               />
               <p className={styles.text}>Система проведения экзаменов</p>
               <a
-                href="/"
-                className={`${styles["go-to-btn"]} ${styles["go-to-exam-btn"]}`}
-              >
+                href='/'
+                className={`${styles['go-to-btn']} ${styles['go-to-exam-btn']}`}>
                 Экзамен
               </a>
             </div>
           </div>
         </div>
       </section>
-      <section id="handbook" className={styles.handbook}>
+      <section id='handbook' className={styles.handbook}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
             src={handbookImg}
-            alt="SVG-изображение"
+            alt='SVG-изображение'
           />
           <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>Веб-справочник</h2>
@@ -96,12 +93,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="coding" className={styles.coding}>
+      <section id='coding' className={styles.coding}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
             src={codeImg}
-            alt="SVG-изображение"
+            alt='SVG-изображение'
           />
           <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>Онлайн кодинг</h2>
@@ -113,12 +110,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="exam" className={styles.exam}>
+      <section id='exam' className={styles.exam}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
             src={examImg}
-            alt="SVG-изображение"
+            alt='SVG-изображение'
           />
           <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>Экзамен</h2>
@@ -130,12 +127,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="about" className={styles.about}>
+      <section id='about' className={styles.about}>
         <div className={styles.contentContainer}>
           <img
             className={styles.sectionImg}
             src={projectImg}
-            alt="SVG-изображение"
+            alt='SVG-изображение'
           />
           <div className={styles.textContainer}>
             <h2 className={styles.themeTitle}>О проекте</h2>
