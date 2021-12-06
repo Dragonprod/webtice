@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LandingPage from './pages/landing/LangingPage';
 import ReferenceBookPage from './pages/referencebook/ReferenceBookPage';
 import ErrorPage from './pages/system/ErrorPage';
-import TestChoicePage from './pages/tests-choice/TestChoicePage';
+import TestChoicePage from './pages/test-choice/TestChoicePage';
 
 function App() {
   // TODO: Add components for exam and learn path
