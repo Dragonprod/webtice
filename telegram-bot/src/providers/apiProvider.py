@@ -9,6 +9,7 @@ class API():
     def __init__(self) -> None:
         self.htmlPrefix = '/tag/name'
         self.cssPrefix = '/style/name'
+        self.questionsPrefix = '/question'
 
     def getCssTagInfo(self, css):
         styleInfo = {}
@@ -49,3 +50,12 @@ class API():
             logger.error("Bad status code. Try again later")
 
         return tagInfo
+
+    def getQuestions(self):
+        response = requests.get(f'{API_BASE_URL}{self.questionsPrefix}')
+
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        else:
+            logger.error("Bad status code. Try again later")

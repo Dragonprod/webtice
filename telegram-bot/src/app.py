@@ -6,13 +6,15 @@ from src.providers.apiProvider import API
 from src.providers.logsProvider import Logger
 from src.providers.functionsProvider import isAdmin
 from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (Updater, CommandHandler, CallbackContext,
-                          MessageHandler, CallbackQueryHandler, Filters)
+from telegram.ext import Updater, CommandHandler, CallbackContext, ConversationHandler, MessageHandler, CallbackQueryHandler, Filters, PicklePersistence
 from telegram_bot_pagination import InlineKeyboardPaginator
 
 
 logger = logging.getLogger(__name__)
 
+QUESTION2, QUESTION3, QUESTION4, QUESTION5, QUESTION6, QUESTION7, QUESTION8, QUESTION9, QUESTION10, RESULT = range(10)
+
+ANSWER_REGEXP = r'\([a-d]{1}\) .*'
 
 class Bot():
     def __init__(self):
@@ -20,6 +22,7 @@ class Bot():
         self.logs = Logger()
         self.attributes = []
         self.logsData = []
+        self.questions = []
 
     def startHandler(self, update: Update, context: CallbackContext) -> None:
         if isAdmin(update):
@@ -102,6 +105,284 @@ class Bot():
         query.edit_message_text(
             text=self.attributes[page - 1], reply_markup=paginator.markup, parse_mode='HTML')
 
+    def testsHandler(self, update: Update, context: CallbackContext) -> None:
+        reply_keyboard = [
+            ['Тема 1', 'Тема 2', 'Тема 3']
+        ]
+        update.message.reply_html("Нажмите на кнопку, чтобы пройти тест", reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        self.logs.addLog(update)
+
+    def startTestHandler(self, update: Update, context: CallbackContext) -> int:
+        self.questions = self.api.getQuestions()
+
+        reply_keyboard = [
+            [f"(a) {self.questions[0]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[0]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[0]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[0]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"1. {self.questions[0]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[0]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[0]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[0]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[0]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+
+        context.user_data['score'] = 0
+        for i in range(len(self.questions[0]['answers'])):
+            if self.questions[0]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[0]['answers'][i]['answerName']
+
+        return QUESTION2
+
+    # Next ten function is very stupid test system code, but actually I dont care about that
+    # because I dont recieve any money for that ¯\_(ツ)_/¯
+
+    def questionTwoHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[1]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[1]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[1]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[1]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"2. {self.questions[1]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[1]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[1]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[1]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[1]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[1]['answers'])):
+            if self.questions[1]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[1]['answers'][i]['answerName']
+        return QUESTION3
+
+    def questionThreeHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[2]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[2]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[2]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[2]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"3. {self.questions[2]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[2]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[2]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[2]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[2]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[2]['answers'])):
+            if self.questions[2]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[2]['answers'][i]['answerName']
+        return QUESTION4
+
+    def questionFourHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[3]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[3]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[3]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[3]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"4. {self.questions[3]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[3]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[3]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[3]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[3]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[3]['answers'])):
+            if self.questions[3]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[3]['answers'][i]['answerName']
+        return QUESTION5
+
+    def questionFiveHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[4]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[4]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[4]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[4]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"5. {self.questions[4]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[4]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[4]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[4]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[4]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[4]['answers'])):
+            if self.questions[4]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[4]['answers'][i]['answerName']
+        return QUESTION6
+
+    def questionSixHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[5]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[5]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[5]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[5]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"6. {self.questions[5]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[5]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[5]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[5]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[5]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[5]['answers'])):
+            if self.questions[5]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[5]['answers'][i]['answerName']
+        return QUESTION7
+
+    def questionSevenHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[6]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[6]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[6]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[6]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"7. {self.questions[6]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[6]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[6]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[6]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[6]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[6]['answers'])):
+            if self.questions[6]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[6]['answers'][i]['answerName']
+        return QUESTION8
+
+    def questionEightHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[7]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[7]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[7]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[7]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"8. {self.questions[7]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[7]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[7]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[7]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[7]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[7]['answers'])):
+            if self.questions[7]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[7]['answers'][i]['answerName']
+        return QUESTION9
+
+    def questionNineHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[8]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[8]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[8]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[8]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"9. {self.questions[8]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[8]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[8]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[8]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[8]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[8]['answers'])):
+            if self.questions[8]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[8]['answers'][i]['answerName']
+        return QUESTION10
+
+    def questionTenHandler(self, update: Update, context: CallbackContext) -> int:
+        reply_keyboard = [
+            [f"(a) {self.questions[9]['answers'][0]['answerName']}"],
+            [f"(b) {self.questions[9]['answers'][1]['answerName']}"],
+            [f"(c) {self.questions[9]['answers'][2]['answerName']}"],
+            [f"(d) {self.questions[9]['answers'][3]['answerName']}"],
+        ]
+
+        questionMessage = f"10. {self.questions[9]['questionName']}\n\nВарианты ответов:"
+        questionAnswerMessage = f"(a) {self.questions[9]['answers'][0]['answerName']}\n"
+        questionAnswerMessage += f"(b) {self.questions[9]['answers'][1]['answerName']}\n"
+        questionAnswerMessage += f"(c) {self.questions[9]['answers'][2]['answerName']}\n"
+        questionAnswerMessage += f"(d) {self.questions[9]['answers'][3]['answerName']}"
+        update.message.reply_text(questionMessage, reply_markup=ReplyKeyboardMarkup(
+            reply_keyboard, resize_keyboard=True, one_time_keyboard=True))
+        update.message.reply_text(questionAnswerMessage)
+        
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        for i in range(len(self.questions[9]['answers'])):
+            if self.questions[9]['answers'][i]['is_right'] == True:
+                context.user_data['last_correct'] = self.questions[9]['answers'][i]['answerName']
+        return RESULT
+
+    def testResultHandler(self, update: Update, context: CallbackContext) -> int:
+
+        if update.message.text[4:] in context.user_data['last_correct']:
+            context.user_data['score'] += 1
+
+        resultMessage = f"Ваш результат: {context.user_data['score']}/10"
+        update.message.reply_text(resultMessage, reply_markup=None)
+
+        return ConversationHandler.END
+
+    def cancelTestHandler(self, update: Update, context: CallbackContext) -> int:
+        update.message.reply_html(
+            "Вы прекратили проходить тест, чтобы пройти текст заново введите /tests")
+        self.logs.addLog(update)
+        return ConversationHandler.END
+
     def gitHubHandler(self, update: Update, context: CallbackContext) -> None:
         update.message.reply_html(
             "{0} <a href='https://github.com/maxcore25/FrontEndStudy'>GitHub проекта</a>".format(u"\U0001f525"))
@@ -160,11 +441,14 @@ class Bot():
             text=self.logsData[page - 1], reply_markup=paginator.markup)
 
     def run(self):
-        updater = Updater(token=TELEGRAM_BOT_TOKEN, use_context=True)
+        persistence = PicklePersistence(filename='storage.pickle')
+        updater = Updater(token=TELEGRAM_BOT_TOKEN,
+                          use_context=True, persistence=persistence)
         dispatcher = updater.dispatcher
 
         dispatcher.add_handler(CommandHandler('start', self.startHandler))
         dispatcher.add_handler(CommandHandler('help', self.helpHandler))
+        dispatcher.add_handler(CommandHandler('tests', self.testsHandler))
         dispatcher.add_handler(MessageHandler(Filters.regex(
             '^{0} Помощь$'.format(u"\u2753")), self.helpHandler))
         dispatcher.add_handler(CommandHandler('getid', self.getIdHandler))
@@ -183,6 +467,29 @@ class Bot():
         dispatcher.add_handler(MessageHandler(Filters.regex(
             '^{0} Сайт проекта$'.format(u"\U0001f310")), self.siteHandler))
 
+        accountSetupHandler = ConversationHandler(
+            entry_points=[MessageHandler(Filters.regex(
+                r'Тема [0-9]{1}'), self.startTestHandler)],
+
+            states={
+                QUESTION2: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionTwoHandler)],
+                QUESTION3: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionThreeHandler)],
+                QUESTION4: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionFourHandler)],
+                QUESTION5: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionFiveHandler)],
+                QUESTION6: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionSixHandler)],
+                QUESTION7: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionSevenHandler)],
+                QUESTION8: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionEightHandler)],
+                QUESTION9: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionNineHandler)],
+                QUESTION10: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.questionTenHandler)],
+                RESULT: [MessageHandler(Filters.regex(ANSWER_REGEXP), self.testResultHandler)],
+            },
+
+            fallbacks=[
+                CommandHandler('cancel', self.cancelTestHandler)
+            ],
+        )
+
+        dispatcher.add_handler(accountSetupHandler)
         dispatcher.add_handler(CommandHandler('logs', self.logsHandler))
         dispatcher.add_handler(CallbackQueryHandler(
             self.logsPageCallback, pattern='^logs#'))
