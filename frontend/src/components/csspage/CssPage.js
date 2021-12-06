@@ -9,7 +9,7 @@ import {
   Paper,
 } from '@mui/material';
 import React, { PureComponent } from 'react';
-import styles from '../styles//ReferenceBookPage.module.css';
+import styles from './CssPage.module.css';
 
 class CssPage extends PureComponent {
   render() {

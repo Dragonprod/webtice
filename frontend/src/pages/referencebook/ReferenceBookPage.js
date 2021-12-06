@@ -1,23 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import Menu from '../components/ReferenceMenu';
-import styles from '../styles//ReferenceBookPage.module.css';
+import Menu from '../../components/referencemenu/ReferenceMenu';
+import Search from '../../components/search/Search';
+import TagPage from '../../components/tagpage/TagPage';
+import CssPage from '../../components/csspage/CssPage';
+import styles from './ReferenceBookPage.module.css';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import API from '../api/api';
-import TagPage from '../components/TagPage';
 import Skeleton from '@mui/material/Skeleton';
-import CssPage from '../components/CssPage';
-
 import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import Search from '../components/search/Search';
+import API from '../../api/api';
 
 function findHtmlTagByName(name, htmlTags) {
   for (let i = 0; i < htmlTags.length; i++)

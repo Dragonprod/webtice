@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LandingPage from "./pages/LangingPage";
-import ReferenceBookPage from "./pages/ReferenceBookPage";
-import ErrorPage from "./pages/ErrorPage";
+import LandingPage from "./pages/landing/LangingPage";
+import ReferenceBookPage from "./pages/referencebook/ReferenceBookPage";
+import ErrorPage from "./pages/system/ErrorPage";
 
 function App() {
   // TODO: Add components for exam and learn path

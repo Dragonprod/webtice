@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import styles from "../styles/LandingPage.module.css";
+import styles from "./LandingPage.module.css";
 
-import handbookIcon from "../assets/handbookIcon.svg";
-import codeIcon from "../assets/codeIcon.svg";
-import examIcon from "../assets/examIcon.svg";
+import handbookIcon from "../../assets/handbookIcon.svg";
+import codeIcon from "../../assets/codeIcon.svg";
+import examIcon from "../../assets/examIcon.svg";
 
-import codeImg from "../assets/codeImg.svg";
-import examImg from "../assets/examImg.svg";
-import handbookImg from "../assets/handbookImg.svg";
-import projectImg from "../assets/projectImg.svg";
+import codeImg from "../../assets/codeImg.svg";
+import examImg from "../../assets/examImg.svg";
+import handbookImg from "../../assets/handbookImg.svg";
+import projectImg from "../../assets/projectImg.svg";
 
-import Menu from "../components/Menu.js";
+import Menu from "../../components/menu/Menu.js";
 
 export default function LandingPage() {
   return (

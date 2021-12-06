@@ -1,0 +1,167 @@
+/* ========== Common Settings ==========*/
+
+/* ========== Grid ==========*/
+.mainGrid {
+  display: grid;
+}
+.textContainer {
+  margin-bottom: 3em;
+}
+.codeContainer {
+  width: 100%;
+  height: 800px;
+  background: #686868;
+}
+.themeTitle {
+  font-size: var(--theme-title-size);
+  color: var(--html-accent-clr);
+  margin-bottom: 0.5em;
+}
+.htmlTitle {
+  color: var(--html-accent-clr);
+}
+.cssTitle {
+  color: var(--css-accent-clr);
+}
+.htmlTitle span,
+.cssTitle span {
+  font-size: var(--theme-title-size);
+  font-weight: 700;
+}
+
+/* ========== Side Bar ==========*/
+.sidebar {
+  display: none;
+}
+
+/* ========== Search Bar ==========*/
+.searchbar {
+  margin-bottom: 2em;
+}
+.searchbar fieldset {
+  border: none;
+  background: #3c3c5a;
+  border-radius: 30px;
+}
+.searchbar div {
+  padding: 0 !important;
+}
+.searchbar label {
+  color: #6a6a6a;
+  top: -7px;
+}
+.searchbar:focus label {
+  transform: translate(14px, -7px) scale(0.75);
+}
+.searchbar input {
+  color: #fff;
+  padding: 7.5px 4px 7.5px 15px !important;
+  z-index: 10;
+}
+
+/* ========== Nav Bar Links==========*/
+.sidebarNavLinks li {
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.sidebarNavLinks li:hover {
+  background: var(--accent-clr);
+}
+.sidebarNavLinks li a {
+  padding: 4px 0 4px 1em;
+}
+
+/* ========== Main Content ==========*/
+.mainСontent {
+  min-height: 100vh;
+  padding: 5em 2em 2em;
+  grid-column: 2;
+}
+.descriptionText {
+  text-align: justify;
+  line-height: 1.5;
+  margin-bottom: 3em;
+  color: #e3e3e3;
+}
+
+/* ========== Table ==========*/
+th:nth-child(1),
+th:nth-child(2),
+td:nth-child(1),
+td:nth-child(2) {
+  color: var(--text-clr);
+  background: var(--menu-bg-clr);
+  border: 1px solid var(--accent-clr) !important;
+  border-right: none;
+}
+td:nth-child(1) {
+  font-weight: 700;
+}
+td:nth-child(2) {
+  border-left: none;
+}
+th:nth-child(1),
+th:nth-child(2) {
+  color: var(--accent-clr);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* ========== CSS Code Card ==========*/
+.codeCard {
+  position: relative;
+  display: inline-block;
+  background: #273238;
+  padding: 1em;
+  border-radius: 14px;
+  box-shadow: 0px 10px 20px 2px rgb(0 0 0 / 25%);
+  margin-bottom: 3em;
+  /* color: #2ac943; */
+  /* color: #c695e8; */
+  color: #5ac7e2;
+}
+.redButton,
+.yellowButton,
+.greenButton {
+  top: 5px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.upperButtonsContainer {
+  display: block;
+  margin: 0 0 1em;
+}
+.redButton {
+  background: #ff5f56;
+}
+.yellowButton {
+  background: #ffbd2e;
+}
+.greenButton {
+  background: #27c93f;
+}
+
+@media screen and (min-width: 1025px) {
+  .mainGrid {
+    grid-template-columns: 275px 4fr;
+  }
+  .sidebar {
+    display: block;
+    padding: 2em 1em;
+    background: var(--sidebar-bg-dark-clr);
+    position: fixed;
+    height: calc(100% - 93px);
+    overflow-x: hidden;
+    width: 275px;
+    max-width: 275px;
+    top: 93px;
+    left: 0;
+  }
+  .mainСontent {
+    padding: 7em 2em 2em;
+  }
+}

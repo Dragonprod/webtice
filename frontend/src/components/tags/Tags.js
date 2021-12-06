@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Menu.module.css";
-import styles2 from "../styles/Tags.module.css";
+import styles from "../menu/Menu.module.css";
+import styles2 from "./Tags.module.css";
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 
@@ -13,8 +13,8 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 
-import API from "../api/api";
-import { renderTagsList } from "../services/renders";
+import API from "../../api/api";
+import { renderTagsList } from "../../services/renders";
 import TagPage from "../components/TagPage";
 
 export default function ReferenceBookMenu() {

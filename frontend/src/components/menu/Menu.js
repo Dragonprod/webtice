@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import styles from "../styles/Menu.module.css";
-import logo from "../assets/logo.svg";
+import styles from "./Menu.module.css";
+import logo from "../../assets/logo.svg";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Menu() {
