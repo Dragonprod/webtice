@@ -18,7 +18,7 @@ class Question():
 
 list_questions = []
 html = requests.get("https://yznaika.com/notes/633-web-programming-answers")
-soup = BeautifulSoup(html.text)
+soup = BeautifulSoup(html.text, "lxml")
 body = soup.find("div", {'class': 'item-page'})
 questions = body.find_all('p')
 for question in questions:
@@ -68,7 +68,7 @@ def main():
     list_questions = []
     html = requests.get(
         "https://yznaika.com/notes/633-web-programming-answers")
-    soup = BeautifulSoup(html.text)
+    soup = BeautifulSoup(html.text, "lxml")
     body = soup.find("div", {'class': 'item-page'})
     questions = body.find_all('p')
     for question in questions:
