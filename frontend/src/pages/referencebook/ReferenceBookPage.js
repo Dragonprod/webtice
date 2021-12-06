@@ -26,7 +26,7 @@ function findCssTagByName(name, cssTags) {
     if (cssTags[i].styleName === name) return cssTags[i];
 }
 
-const ReferenceBook = () => {
+export default function ReferenceBook() {
   const [htmlTags, sethtmlTags] = useState([]);
   const [cssTags, setcssTags] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -400,4 +400,3 @@ const ReferenceBook = () => {
     </>
   );
 };
-export default ReferenceBook;
