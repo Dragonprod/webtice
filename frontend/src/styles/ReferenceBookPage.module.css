@@ -23,6 +23,11 @@
 .cssTitle {
   color: var(--css-accent-clr);
 }
+.htmlTitle span,
+.cssTitle span {
+  font-size: var(--theme-title-size);
+  font-weight: 700;
+}
 
 /* ========== Side Bar ==========*/
 .sidebar {
@@ -80,6 +85,7 @@
   color: #e3e3e3;
 }
 
+/* ========== Table ==========*/
 th:nth-child(1),
 th:nth-child(2),
 td:nth-child(1),
