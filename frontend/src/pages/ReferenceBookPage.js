@@ -17,6 +17,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import Search from '../components/search/Search';
 
 function findHtmlTagByName(name, htmlTags) {
   for (let i = 0; i < htmlTags.length; i++)
@@ -338,7 +339,7 @@ const ReferenceBook = () => {
         <div className={styles.mainGrid}>
           <div className={styles.sidebar}>
             <Stack spacing={2} sx={{ width: 240 }}>
-              <Autocomplete
+              {/* <Autocomplete
                 className={styles.searchbar}
                 onChange={(event, value) => {
                   handleSearchChange(event, value);
@@ -349,7 +350,10 @@ const ReferenceBook = () => {
                   .map(option => option.name)
                   .concat(cssTags.map(option => option.styleName))}
                 renderInput={params => <TextField {...params} label='Поиск' />}
-              />
+              /> */}
+              <Search options={htmlTags
+                .map(option => option.name)
+                .concat(cssTags.map(option => option.styleName))} onChange={(event, value) => handleSearchChange(event, value)} />
             </Stack>
 
             <List>

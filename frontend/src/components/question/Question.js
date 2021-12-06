@@ -8,7 +8,11 @@ import FormLabel from '@mui/material/FormLabel';
 import styles from './Question.module.css';
 
 export default function Question(props) {
-    const theme, questionName, answers = props;
+    const theme = props.theme;
+    const questionName = props.questionName;
+    const answers = props.answers;
+
+
 
     return (
         <div>
