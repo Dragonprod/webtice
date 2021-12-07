@@ -1,0 +1,23 @@
+.searchbar input {
+  padding: 0.5em 1em 0.5em 2.2em !important;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: #fff !important;
+  background: #3c3c5a !important;
+  width: 100%;
+  font-size: 1rem;
+}
+.searchbar {
+  width: 100%;
+}
+.searchbar div {
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 7px;
+  z-index: 2;
+}
