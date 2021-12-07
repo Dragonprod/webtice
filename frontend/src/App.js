@@ -8,7 +8,6 @@ import TestChoicePage from './pages/test-choice/TestChoicePage';
 import TestPage from './pages/test/TestPage';
 
 function App() {
-  // TODO: Add components for exam and learn path
   return (
     <div className='App'>
       <main>
@@ -18,8 +17,8 @@ function App() {
             <Route path='/refbook' component={ReferenceBookPage} />
             <Route path='/exam' component={LandingPage} />
             <Route path='/learn' component={LandingPage} />
-            <Route path='/test-choice' component={TestChoicePage} />
-            <Route path='/test' component={TestPage} />
+            <Route path='/test/process' component={TestPage} />
+            <Route path='/test' component={TestChoicePage} />
             <Route path='*' component={ErrorPage} />
           </Switch>
         </BrowserRouter>
