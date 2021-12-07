@@ -55,7 +55,7 @@ export default function LandingPage() {
                 Онлайн задания по веб-разработке (преимущественно верстка)
               </p>
               <a
-                href='/'
+                href='/test'
                 className={`${styles['go-to-btn']} ${styles['go-to-online-coding-btn']}`}>
                 Онлайн Тест
               </a>
