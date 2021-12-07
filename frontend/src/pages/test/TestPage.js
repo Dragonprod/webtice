@@ -20,6 +20,10 @@ const TestPage = () => {
     getQuestionsData();
   }, []);
 
+  const handleQuestionChange = () => {
+    if (current <= 10)
+      setCurrent(prevState => prevState + 1);
+  }
   return (
     <>
       {!loading && (
@@ -29,16 +33,17 @@ const TestPage = () => {
           <div className={styles.testsGrid}>
             {
               {
-                0: <Question theme="Тема 1" questionName={questions[0].questionName} answers={questions[0].answers} />,
-                1: <Question theme="Тема 1" questionName={questions[1].questionName} answers={questions[1].answers} />,
-                2: <Question theme="Тема 1" questionName={questions[2].questionName} answers={questions[2].answers} />,
-                3: <Question theme="Тема 1" questionName={questions[3].questionName} answers={questions[3].answers} />,
-                4: <Question theme="Тема 1" questionName={questions[4].questionName} answers={questions[4].answers} />,
-                5: <Question theme="Тема 1" questionName={questions[5].questionName} answers={questions[5].answers} />,
-                6: <Question theme="Тема 1" questionName={questions[6].questionName} answers={questions[6].answers} />,
-                7: <Question theme="Тема 1" questionName={questions[7].questionName} answers={questions[7].answers} />,
-                8: <Question theme="Тема 1" questionName={questions[8].questionName} answers={questions[8].answers} />,
-                9: <Question theme="Тема 1" questionName={questions[9].questionName} answers={questions[9].answers} />
+                0: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[0].questionName} answers={questions[0].answers} />,
+                1: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[1].questionName} answers={questions[1].answers} />,
+                2: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[2].questionName} answers={questions[2].answers} />,
+                3: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[3].questionName} answers={questions[3].answers} />,
+                4: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[4].questionName} answers={questions[4].answers} />,
+                5: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[5].questionName} answers={questions[5].answers} />,
+                6: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[6].questionName} answers={questions[6].answers} />,
+                7: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[7].questionName} answers={questions[7].answers} />,
+                8: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[8].questionName} answers={questions[8].answers} />,
+                9: <Question onClick={handleQuestionChange} theme="Тема 1" questionName={questions[9].questionName} answers={questions[9].answers} />,
+                10: <h1>Результат: 0/10</h1>
               }[current]
             }
 

@@ -7,6 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import styles from './Question.module.css';
 
 export default function Question(props) {
+  const onClick = props.onClick;
   const theme = props.theme;
   const questionName = props.questionName;
   const answers = props.answers;
@@ -28,6 +29,7 @@ export default function Question(props) {
             />
           ))}
         </RadioGroup>
+        <Button onClick={onClick}>Дальше</Button>
       </FormControl>
     </div>
   );
