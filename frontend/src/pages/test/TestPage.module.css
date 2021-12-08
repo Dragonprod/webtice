@@ -1,7 +1,7 @@
 /* ========== Grid ==========*/
 .mainGrid {
   display: grid;
-  grid-template-rows: 93px 5em 1fr;
+  grid-template-rows: 93px 1fr;
   place-items: center;
 }
 .testChoiceTitle {

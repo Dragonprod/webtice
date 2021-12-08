@@ -15,8 +15,8 @@ export default function Question(props) {
 
   return (
     <div className={styles.questionCard}>
-      <h1 className={styles.testChoiceTitle}>{theme}</h1>
-      <h1>{questionName}</h1>
+      <h2 className={styles.testThemeTitle}>{theme}</h2>
+      <h3 className={styles.questionName}>{questionName}</h3>
       <FormControl component='fieldset'>
         <RadioGroup
           aria-label='gender'
@@ -24,13 +24,28 @@ export default function Question(props) {
           name='radio-buttons-group'>
           {answers.map(ans => (
             <FormControlLabel
+              className={styles.muiRadioButton}
               value={ans.answerName}
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    color: '#fb39f9',
+                    '&.Mui-checked': {
+                      color: '#fb39f9',
+                    },
+                  }}
+                />
+              }
               label={ans.answerName}
             />
           ))}
         </RadioGroup>
-        <Button onClick={onClick}>Дальше</Button>
+        <Button
+          className={styles.muiContinueButton}
+          variant='contained'
+          onClick={onClick}>
+          Далее
+        </Button>
       </FormControl>
     </div>
   );
