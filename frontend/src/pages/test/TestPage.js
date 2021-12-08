@@ -9,6 +9,7 @@ const TestPage = () => {
   const [current, setCurrent] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [correctCount, setCorrectCount] = useState(0)
 
   useEffect(() => {
     const getQuestionsData = async () => {
@@ -20,8 +21,14 @@ const TestPage = () => {
     getQuestionsData();
   }, []);
 
-  const handleQuestionChange = () => {
-    if (current <= 10) setCurrent(prevState => prevState + 1);
+  const handleQuestionChange = (answer) => {
+    if (current <= 10) {
+      questions[current].answers.map((ans) => {
+        if (ans.answerName === answer && ans.is_right === true)
+          setCorrectCount(prevState => prevState + 1);
+      });
+      setCurrent(prevState => prevState + 1);
+    }
   };
   return (
     <>
@@ -35,6 +42,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={1}
                     questionName={questions[0].questionName}
                     answers={questions[0].answers}
                   />
@@ -43,6 +51,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={2}
                     questionName={questions[1].questionName}
                     answers={questions[1].answers}
                   />
@@ -51,6 +60,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={3}
                     questionName={questions[2].questionName}
                     answers={questions[2].answers}
                   />
@@ -59,6 +69,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={4}
                     questionName={questions[3].questionName}
                     answers={questions[3].answers}
                   />
@@ -67,6 +78,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={5}
                     questionName={questions[4].questionName}
                     answers={questions[4].answers}
                   />
@@ -75,6 +87,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={6}
                     questionName={questions[5].questionName}
                     answers={questions[5].answers}
                   />
@@ -83,6 +96,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={7}
                     questionName={questions[6].questionName}
                     answers={questions[6].answers}
                   />
@@ -91,6 +105,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={8}
                     questionName={questions[7].questionName}
                     answers={questions[7].answers}
                   />
@@ -99,6 +114,7 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={9}
                     questionName={questions[8].questionName}
                     answers={questions[8].answers}
                   />
@@ -107,11 +123,12 @@ const TestPage = () => {
                   <Question
                     onClick={handleQuestionChange}
                     theme='Тема 1'
+                    questionId={10}
                     questionName={questions[9].questionName}
                     answers={questions[9].answers}
                   />
                 ),
-                10: <h1>Результат: 0/10</h1>,
+                10: <h1>Результат: {correctCount}/10</h1>,
               }[current]
             }
           </div>
