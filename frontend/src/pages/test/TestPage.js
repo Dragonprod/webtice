@@ -9,7 +9,7 @@ const TestPage = () => {
   const [current, setCurrent] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [correctCount, setCorrectCount] = useState(0)
+  const [correctCount, setCorrectCount] = useState(0);
 
   useEffect(() => {
     const getQuestionsData = async () => {
@@ -21,9 +21,9 @@ const TestPage = () => {
     getQuestionsData();
   }, []);
 
-  const handleQuestionChange = (answer) => {
+  const handleQuestionChange = answer => {
     if (current <= 10) {
-      questions[current].answers.map((ans) => {
+      questions[current].answers.map(ans => {
         if (ans.answerName === answer && ans.is_right === true)
           setCorrectCount(prevState => prevState + 1);
       });
@@ -128,7 +128,14 @@ const TestPage = () => {
                     answers={questions[9].answers}
                   />
                 ),
-                10: <h1>Результат: {correctCount}/10</h1>,
+                10: (
+                  <div className={styles.questionCard}>
+                    <h1 className={styles.testFinalTitle}>Тест пройден!</h1>
+                    <h2 className={styles.testThemeTitle}>
+                      Результат: {correctCount}/10
+                    </h2>
+                  </div>
+                ),
               }[current]
             }
           </div>
