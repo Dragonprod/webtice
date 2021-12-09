@@ -1,7 +1,7 @@
 import json
 import logging
 
-from src.core.config import DEBUG, TELEGRAM_BOT_TOKEN, ADMINS_CHAT_IDS
+from src.core.config import TELEGRAM_BOT_TOKEN, ADMINS_CHAT_IDS
 from src.providers.apiProvider import API
 from src.providers.logsProvider import Logger
 from src.providers.functionsProvider import isAdmin

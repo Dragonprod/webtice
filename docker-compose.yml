@@ -1,32 +1,33 @@
 version: "3.8"
 
 services:
-  # webtice-server:
-  #   container_name: webtice-server
-  #   build:
-  #     context: ./backend
-  #     dockerfile: Dockerfile
-  #   image: webtice-server
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - webtice-db
-
-  # webtice-tg-bot:
-  #   build:
-  #     context: ./telegram-bot
-  #     dockerfile: Dockerfile
-  #   container_name: webtice-tg-bot
-  #   environment:
-  #     TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
-  #     ADMINS_CHAT_IDS: ${ADMINS_CHAT_IDS}
-  #     DATABASE_NAME: ${DATABASE_NAME}
-  #     DATABASE_USER: ${DATABASE_USER}
-  #     DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-  #   command: python3 main.py
-  #   depends_on:
-  #     - webtice-db
-  #   restart: always
+  webtice-server:
+    container_name: webtice-server
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: webtice-server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - webtice-db
+    restart: always
+    
+  webtice-tg-bot:
+    build:
+      context: ./telegram-bot
+      dockerfile: Dockerfile
+    container_name: webtice-tg-bot
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      ADMINS_CHAT_IDS: ${ADMINS_CHAT_IDS}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    command: python3 main.py
+    depends_on:
+      - webtice-db
+    restart: always
 
   webtice-db:
     image: postgres:12.2-alpine
