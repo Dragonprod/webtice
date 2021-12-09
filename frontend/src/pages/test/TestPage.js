@@ -4,6 +4,8 @@ import styles from './TestPage.module.css';
 import Menu from '../../components/referencemenu/ReferenceMenu';
 import API from '../../api/api';
 import Question from '../../components/question/Question';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const TestPage = () => {
   const [current, setCurrent] = useState(0);
@@ -134,6 +136,13 @@ const TestPage = () => {
                     <h2 className={styles.testThemeTitle}>
                       Результат: {correctCount}/10
                     </h2>
+                    <Link className={styles.testThemeCard} to="/test">
+                      <Button
+                        className={styles.muiContinueButton}
+                        variant='contained'>
+                        Меню
+                      </Button>
+                    </Link>
                   </div>
                 ),
               }[current]
