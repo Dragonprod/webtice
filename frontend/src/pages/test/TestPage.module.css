@@ -61,4 +61,5 @@
   padding: 10px 50px !important;
   margin: 3em auto 0 !important;
   border-radius: 10px !important;
+  justify-self: center;
 }
