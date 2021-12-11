@@ -136,7 +136,7 @@ const TestPage = () => {
                     <h2 className={styles.testThemeTitle}>
                       Результат: {correctCount}/10
                     </h2>
-                    <Link className={styles.testThemeCard} to="/test">
+                    <Link to='/test'>
                       <Button
                         className={styles.muiContinueButton}
                         variant='contained'>
