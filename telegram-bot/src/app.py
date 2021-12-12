@@ -385,7 +385,7 @@ class Bot():
 
     def gitHubHandler(self, update: Update, context: CallbackContext) -> None:
         update.message.reply_html(
-            "{0} <a href='https://github.com/maxcore25/FrontEndStudy'>GitHub проекта</a>".format(u"\U0001f525"))
+            "{0} <a href='https://github.com/Dragonprod/webtice'>GitHub проекта</a>".format(u"\U0001f525"))
         self.logs.addLog(update)
 
     def siteHandler(self, update: Update, context: CallbackContext) -> None:
