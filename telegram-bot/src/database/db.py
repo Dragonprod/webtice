@@ -9,7 +9,7 @@ from src.core.config import DATABASE_USER, DATABASE_NAME, DATABASE_PASSWORD
 #! PRODUCTION
 # engine_postrgesql = create_engine(f'postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@webtice-db:5432/{DATABASE_NAME}')
 engine_postrgesql = create_engine(
-    f'postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@webtice-db:5432/{DATABASE_NAME}')
+    f'postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@localhost:5432/{DATABASE_NAME}')
 Session = sessionmaker(bind=engine_postrgesql)
 Base = declarative_base(bind=engine_postrgesql)
 
