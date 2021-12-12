@@ -1,0 +1,46 @@
+/* ========== Common Styles ==========*/
+.testThemeTitle {
+  color: #fff;
+  font-size: var(--theme-title-size);
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+/* ========== Test Cards ==========*/
+.questionCard {
+  position: relative;
+  padding: 2.5em;
+  margin: 1em 0;
+  color: var(--text-clr);
+  background: #3c3c5a;
+  border: 3px solid var(--accent-clr);
+  box-shadow: 0px 10px 20px 2px rgb(0 0 0 / 25%);
+  border-radius: 20px;
+  max-width: 1000px;
+  transition: transform 0.3s;
+  display: grid;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  width: 100%;
+}
+.questionCard:hover {
+  box-shadow: 0px 10px 30px 2px rgba(0, 0, 0, 0.25);
+}
+.questionName {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-bottom: 1em;
+}
+
+/* ========== MUI Continue Button ==========*/
+.muiContinueButton {
+  text-transform: initial !important;
+  background: var(--accent-clr) !important;
+  width: fit-content;
+  justify-self: center;
+  font-size: 1rem !important;
+  padding: 10px 50px !important;
+  margin: 3em auto 0 !important;
+  border-radius: 10px !important;
+}

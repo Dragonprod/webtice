@@ -8,6 +8,7 @@ import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.service.EntityServiceImpl;
 import ru.mirea.webtice.backend.service.QuestionServiceImpl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,11 @@ public class QuestionController {
 
     @Autowired
     private QuestionServiceImpl questionService;
+
+    @PostMapping("/parser")
+    public void parseStart() throws IOException {
+        // questionService.start();
+    }
 
     @PostMapping("/add")
     public Question setQuestion(@RequestBody Question question) {

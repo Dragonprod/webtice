@@ -7,3 +7,4 @@ pydantic
 SQLAlchemy
 psycopg2
 typing
+python-dotenv

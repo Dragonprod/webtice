@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Menu from "./components/Menu";
-import LandingPage from "./pages/LangingPage";
+import Menu from "./components/menu/Menu";
+import LandingPage from "./pages/landing/LangingPage";
 
 test("renders main title part one", () => {
   render(<LandingPage />);

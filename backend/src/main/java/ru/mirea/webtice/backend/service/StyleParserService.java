@@ -68,9 +68,7 @@ public class StyleParserService {
             Element table = blockContent.select("table.syntax").first();
             if (table != null){
                 Elements trs = table.select("tr");
-                for (Element tr: trs){
-                    syntex = syntex + tr.text();
-                }
+                Element lastTr = trs.get(trs.size()-1);
             }
         }
         style.setSyntax(syntex);
