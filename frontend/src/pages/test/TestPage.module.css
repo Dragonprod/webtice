@@ -52,6 +52,9 @@
 }
 
 /* ========== MUI Continue Button ==========*/
+.tagAForButton {
+  display: grid;
+}
 .muiContinueButton {
   text-transform: initial !important;
   background: var(--accent-clr) !important;
