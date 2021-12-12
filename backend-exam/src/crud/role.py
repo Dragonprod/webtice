@@ -1,7 +1,7 @@
 from fastapi import Depends, Body, Depends
 from starlette.exceptions import HTTPException
 from starlette.status import HTTP_404_NOT_FOUND
-from src.database.database import Role, Startup, Status, User, get_db, Session
+from src.database.database import Role, User, get_db, Session
 from src.helpers.exceptions import EntityDoesNotExist
 
 

@@ -13,3 +13,8 @@ class JWTUser(BaseModel):
     user_id: int
     is_admin: bool
     roles: List[RoleBase]
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
