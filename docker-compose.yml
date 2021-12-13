@@ -22,6 +22,7 @@ services:
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       ADMINS_CHAT_IDS: ${ADMINS_CHAT_IDS}
       DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_USER: ${DATABASE_USER}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     command: python3 main.py
@@ -43,6 +44,6 @@ services:
       - "5432:5432"
     volumes:
       - webtice-postgres-db:/var/lib/postgresql
-
+  
 volumes:
   webtice-postgres-db:
