@@ -81,7 +81,7 @@ def main():
             'answers': [{"answerName": answer.text_answer, "is_right": answer.is_right} for answer in question.answers]
         }
         req = requests.post(
-            "http://localhost:8080/api/question/add", json=body)
+            "http://localhost:8080/api/question", json=body)
         print(req.text)
 
 
