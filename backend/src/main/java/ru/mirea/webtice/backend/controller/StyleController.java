@@ -21,7 +21,7 @@ public class StyleController {
     @Autowired
     private StyleParserService styleParserService;
 
-    @PostMapping("/parser")
+    @PostMapping("/parse")
     public void parseStart() throws IOException {
         styleParserService.start();
     }
