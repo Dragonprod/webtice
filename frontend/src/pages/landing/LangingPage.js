@@ -36,8 +36,7 @@ export default function LandingPage() {
                 alt='Иконка справочника'
               />
               <p className={styles.text}>
-                Интерактивный справочник по HTML и CSS элементам с возможность
-                просмотра изменений в реальном времени
+                Интерактивный справочник по HTML и CSS элементам
               </p>
               <a
                 href='/refbook'
@@ -144,7 +143,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      <footer className={styles.footer}>© 2021 MIREA NINJA</footer>
+      <footer className={styles.footer}>© 2022 MIREA NINJA</footer>
     </>
   );
 }
