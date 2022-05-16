@@ -53,6 +53,7 @@ public class QuestionController {
         Set<Answer> answers = new HashSet<>();
         answerRequests.forEach(ans -> {
             Answer answer = new Answer(ans.getAnswerName(), ans.getRight());
+            answer.setQuestion(question);
             answers.add(answer);
         });
         question.setAnswers(answers);

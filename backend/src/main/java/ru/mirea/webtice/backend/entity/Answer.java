@@ -30,28 +30,20 @@ public class Answer {
         this.is_right = is_right;
     }
 
-    public String getAnswerName() {
-        return answerName;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setAnswerName(String answerName) {
-        this.answerName = answerName;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public String getAnswerName() {
+        return answerName;
+    }
+
+    public void setAnswerName(String answerName) {
+        this.answerName = answerName;
     }
 
     public Boolean getIs_right() {
@@ -60,5 +52,13 @@ public class Answer {
 
     public void setIs_right(Boolean is_right) {
         this.is_right = is_right;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }

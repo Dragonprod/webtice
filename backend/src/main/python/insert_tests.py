@@ -78,12 +78,11 @@ def main():
     for question in list_questions:
         body = {
             'questionName': question.text,
-            'answers': [{"answerName": answer.text_answer, "is_right": answer.is_right} for answer in question.answers]
+            'answers': [{"answerName": answer.text_answer, "right": answer.is_right} for answer in question.answers]
         }
         req = requests.post(
             "http://localhost:8080/api/question", json=body)
         print(req.text)
-
 
 if __name__ == '__main__':
     main()
