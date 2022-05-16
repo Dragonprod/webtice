@@ -36,8 +36,8 @@ public class TagController {
         return tagRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Tag is not found."));
     }
 
-    @GetMapping("/{name}")
-    public Tag getTagByName(@PathVariable String name) {
+    @GetMapping("/name")
+    public Tag getTagByName(@RequestParam String name) {
         return tagRepository.findByTagName(name).orElseThrow(() -> new RuntimeException("Error: Tag is not found."));
     }
 

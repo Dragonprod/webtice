@@ -36,8 +36,8 @@ public class StyleController {
         return styleRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
     }
 
-    @GetMapping("/{name}")
-    public Style getStyleByName(@PathVariable String name) {
+    @GetMapping("/name")
+    public Style getStyleByName(@RequestParam String name) {
         return styleRepository.findByStyleName(name).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
     }
 

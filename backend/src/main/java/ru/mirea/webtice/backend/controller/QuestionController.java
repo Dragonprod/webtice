@@ -9,6 +9,7 @@ import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Answer;
 import ru.mirea.webtice.backend.entity.Question;
 import ru.mirea.webtice.backend.repository.QuestionRepository;
+import ru.mirea.webtice.backend.service.QuestionParserService;
 
 import javax.validation.Valid;
 import java.io.IOException;
@@ -23,9 +24,12 @@ public class QuestionController {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private QuestionParserService questionService;
+
     @PostMapping("/parse")
     public void parseStart() throws IOException {
-        // questionService.start();
+        questionService.start();
     }
 
     @GetMapping("")
@@ -61,8 +65,8 @@ public class QuestionController {
         return questionRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Question is not found."));
     }
 
-    @GetMapping("/{name}")
-    public Question getQuestionByName(@PathVariable String name) {
+    @GetMapping("/name")
+    public Question getQuestionByName(@RequestParam String name) {
         return questionRepository.findQuestionByQuestionName(name).orElseThrow(() -> new RuntimeException("Error: Question is not found."));
     }
 
