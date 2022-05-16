@@ -7,6 +7,7 @@ import ErrorPage from './pages/system/ErrorPage';
 import TestChoicePage from './pages/test-choice/TestChoicePage';
 import TestPage from './pages/test/TestPage';
 
+
 function App() {
   return (
     <div className='App'>
@@ -22,9 +23,9 @@ function App() {
             <Route path='*' component={ErrorPage} />
           </Switch>
         </BrowserRouter>
+
       </main>
     </div>
   );
 }
-
 export default App;

@@ -7,12 +7,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, Date, ForeignKey, Boolean, Table
 from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.util.langhelpers import public_factory
-from src.core.config import DATABASE_HOST, DATABASE_PORT, DATABASE_USER, DATABASE_NAME, DATABASE_PASSWORD
+from src.core.config import DATABASE_HOST, DATABASE_USER, DATABASE_NAME, DATABASE_PASSWORD
 import os
 import datetime
 
 engine_postrgesql = create_engine(
-    f'postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}')
+    f'postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:5432/{DATABASE_NAME}')
 Session = sessionmaker(bind=engine_postrgesql)
 Base = declarative_base(bind=engine_postrgesql)
 

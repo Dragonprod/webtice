@@ -1,10 +1,11 @@
 package ru.mirea.webtice.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Style;
-import ru.mirea.webtice.backend.service.EntityServiceImpl;
+import ru.mirea.webtice.backend.repository.StyleRepository;
 import ru.mirea.webtice.backend.service.StyleParserService;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import java.util.List;
 public class StyleController {
 
     @Autowired
-    private EntityServiceImpl entityService;
+    private StyleRepository styleRepository;
 
     @Autowired
     private StyleParserService styleParserService;
@@ -25,31 +26,25 @@ public class StyleController {
         styleParserService.start();
     }
 
-    @GetMapping("/{id}")
-    public Style tagGet(@PathVariable Long id) {
-        Style style = (Style) entityService.getStyle(id);
-        return style;
-    }
-
     @GetMapping("")
-    public List<Style> getAllStyle() {
-        List<Style> styles = entityService.getStyleAll();
-        return styles;
+    public List<Style> getStyles() {
+        return styleRepository.findAll();
     }
 
-    @GetMapping("/name")
-    public Style tagGetByName(@RequestParam String styleName) {
-        Style style = (Style) entityService.getStyleByName(styleName);
-        return style;
+    @GetMapping("/{id}")
+    public Style getStyleById(@PathVariable Long id) {
+        return styleRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
+    }
+
+    @GetMapping("/{name}")
+    public Style getStyleByName(@PathVariable String name) {
+        return styleRepository.findByStyleName(name).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus deleteStyle(@PathVariable Long id) {
-        Style style = (Style) entityService.deleteStyle(id);
-        if (style == null) {
-            return HttpStatus.NOT_FOUND;
-        }
-        return HttpStatus.OK;
+    public ResponseEntity<?> deleteStyle(@PathVariable("id") Long id) {
+        styleRepository.deleteById(id);
+        return ResponseEntity.ok(new MessageResponse("Style with id " + id + " deleted successfully"));
     }
 
 }

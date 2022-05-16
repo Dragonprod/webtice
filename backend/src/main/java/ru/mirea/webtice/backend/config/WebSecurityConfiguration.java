@@ -1,6 +1,7 @@
 package ru.mirea.webtice.backend.config;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,53 +12,57 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.mirea.webtice.backend.config.jwt.AuthEntryPointJwt;
+import ru.mirea.webtice.backend.config.jwt.AuthTokenFilter;
+import ru.mirea.webtice.backend.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    //private final UserDetailsServiceImpl userDetailsService;
-    //private final JWTAuthEntryPoint unauthorizedHandler;
-    //private final JWTTokenFilter jwtTokenFilter;
+    @Autowired
+    UserService userDetailsService;
 
+    @Autowired
+    private AuthEntryPointJwt unauthorizedHandler;
 
-    public WebSecurityConfiguration() {
-        //this.userDetailsService = userDetailsService;
-        //this.unauthorizedHandler = unauthorizedHandler;
-        //this.jwtTokenFilter = jwtTokenFilter;
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(bCryptPasswordEncoder());
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/**").permitAll();
-                //.anyRequest().authenticated()
-                //.and()
-                //.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.cors().and().csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests().antMatchers("/api/auth/**").permitAll().and()
+                .authorizeRequests().antMatchers("/docs").permitAll().and()
+                .authorizeRequests().antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/api/test/**").permitAll();
+        //.anyRequest().authenticated();
 
-        //http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-
-//    @Bean
-//    @Override
-//    public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-//    }
 
 }

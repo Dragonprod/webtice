@@ -21,6 +21,15 @@ public class Answer {
     @JsonBackReference
     private Question question;
 
+    public Answer() {
+
+    }
+
+    public Answer(String answerName, Boolean is_right) {
+        this.answerName = answerName;
+        this.is_right = is_right;
+    }
+
     public String getAnswerName() {
         return answerName;
     }
