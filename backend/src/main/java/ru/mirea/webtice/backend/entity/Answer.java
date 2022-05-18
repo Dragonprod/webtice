@@ -16,7 +16,7 @@ public class Answer {
     @Column(name="is_right", columnDefinition = "boolean default false")
     private Boolean is_right = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="question_id")
     @JsonBackReference
     private Question question;

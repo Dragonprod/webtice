@@ -15,7 +15,7 @@ public class Value {
     @Column(name="description", length = 1024)
     private String description  ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="style_id")
     @JsonBackReference
     private Style style;
