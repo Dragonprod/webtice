@@ -1,8 +1,12 @@
 package ru.mirea.webtice.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.repository.StyleRepository;
@@ -21,7 +25,7 @@ public class StyleController {
     @Autowired
     private StyleParserService styleParserService;
 
-    @PostMapping("/parser")
+    @PostMapping("/parse")
     public void parseStart() throws IOException {
         styleParserService.start();
     }
@@ -33,12 +37,16 @@ public class StyleController {
 
     @GetMapping("/{id}")
     public Style getStyleById(@PathVariable Long id) {
-        return styleRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
+        return styleRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Style not found"
+        ));
     }
 
-    @GetMapping("/{name}")
-    public Style getStyleByName(@PathVariable String name) {
-        return styleRepository.findByStyleName(name).orElseThrow(() -> new RuntimeException("Error: Style is not found."));
+    @GetMapping("/name")
+    public Style getStyleByName(@RequestParam String name) {
+        return styleRepository.findByStyleName(name).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tag not found"
+        ));
     }
 
     @DeleteMapping("/{id}")
@@ -46,5 +54,4 @@ public class StyleController {
         styleRepository.deleteById(id);
         return ResponseEntity.ok(new MessageResponse("Style with id " + id + " deleted successfully"));
     }
-
 }

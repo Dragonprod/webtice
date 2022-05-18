@@ -1,9 +1,14 @@
 package ru.mirea.webtice.backend.controller;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Attribute;
+import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.entity.Tag;
 import ru.mirea.webtice.backend.repository.TagRepository;
 import ru.mirea.webtice.backend.service.TagParserService;
@@ -33,12 +38,16 @@ public class TagController {
 
     @GetMapping("/{id}")
     public Tag getTagById(@PathVariable Long id) {
-        return tagRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Tag is not found."));
+        return tagRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tag not found"
+        ));
     }
 
-    @GetMapping("/{name}")
-    public Tag getTagByName(@PathVariable String name) {
-        return tagRepository.findByTagName(name).orElseThrow(() -> new RuntimeException("Error: Tag is not found."));
+    @GetMapping("/name")
+    public Tag getTagByName(@RequestParam String name) {
+        return tagRepository.findByTagName(name).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tag not found"
+        ));
     }
 
     @DeleteMapping("/{id}")
