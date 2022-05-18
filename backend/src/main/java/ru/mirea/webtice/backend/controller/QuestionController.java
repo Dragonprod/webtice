@@ -1,8 +1,10 @@
 package ru.mirea.webtice.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.mirea.webtice.backend.dto.request.AnswerRequest;
 import ru.mirea.webtice.backend.dto.request.QuestionRequest;
 import ru.mirea.webtice.backend.dto.response.MessageResponse;
@@ -63,12 +65,16 @@ public class QuestionController {
 
     @GetMapping("/{id}")
     public Question getQuestionById(@PathVariable Long id) {
-        return questionRepository.findById(id).orElseThrow(() -> new RuntimeException("Error: Question is not found."));
+        return questionRepository.findById(id).orElseThrow(() ->new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Question not found"
+        ));
     }
 
     @GetMapping("/name")
     public Question getQuestionByName(@RequestParam String name) {
-        return questionRepository.findQuestionByQuestionName(name).orElseThrow(() -> new RuntimeException("Error: Question is not found."));
+        return questionRepository.findQuestionByQuestionName(name).orElseThrow(() -> new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Tag not found"
+        ));
     }
 
     @DeleteMapping("/{id}")
