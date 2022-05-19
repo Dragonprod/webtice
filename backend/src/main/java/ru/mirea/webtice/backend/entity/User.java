@@ -1,5 +1,6 @@
 package ru.mirea.webtice.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -31,6 +32,18 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE}
+    )
+    @JoinTable(
+            name = "test_users",
+            joinColumns = @JoinColumn(name = "test_id") ,
+            inverseJoinColumns =  @JoinColumn(name = "user_id")
+    )
+    @JsonManagedReference
+    private Set<Test> tests = new HashSet<>();
 
     public User() {
     }
@@ -55,6 +68,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Set<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(Set<Test> tests) {
+        this.tests = tests;
     }
 
     public String getEmail() {

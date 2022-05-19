@@ -19,6 +19,7 @@ import ru.mirea.webtice.backend.entity.User;
 import ru.mirea.webtice.backend.enums.RoleEnum;
 import ru.mirea.webtice.backend.repository.RoleRepository;
 import ru.mirea.webtice.backend.repository.UserRepository;
+import ru.mirea.webtice.backend.service.UserService;
 import ru.mirea.webtice.backend.utils.UserServiceUtils;
 
 import javax.validation.Valid;
