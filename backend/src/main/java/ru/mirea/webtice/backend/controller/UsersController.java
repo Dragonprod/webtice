@@ -2,10 +2,8 @@ package ru.mirea.webtice.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import ru.mirea.webtice.backend.dto.models.UserDTO;
 import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Test;
 import ru.mirea.webtice.backend.entity.User;
