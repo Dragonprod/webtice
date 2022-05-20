@@ -11,5 +11,5 @@ import java.util.List;
 public interface AttributeRepository extends JpaRepository<Attribute,Long> {
 
     @Query(value = "SELECT attr FROM Attribute attr where attr.isGlobal = ?1 and attr.isEvent = ?2")
-    public List<Attribute> findByIsGlobalorIsevent(Boolean isGlobal, Boolean isEvent);
+    List<Attribute> findByIsGlobalorIsevent(Boolean isGlobal, Boolean isEvent);
 }
