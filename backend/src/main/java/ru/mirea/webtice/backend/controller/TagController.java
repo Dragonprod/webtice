@@ -10,10 +10,12 @@ import ru.mirea.webtice.backend.dto.response.MessageResponse;
 import ru.mirea.webtice.backend.entity.Attribute;
 import ru.mirea.webtice.backend.entity.Style;
 import ru.mirea.webtice.backend.entity.Tag;
+import ru.mirea.webtice.backend.repository.AttributeRepository;
 import ru.mirea.webtice.backend.repository.TagRepository;
 import ru.mirea.webtice.backend.service.TagParserService;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,6 +24,9 @@ public class TagController {
 
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private AttributeRepository attributeRepository;
 
     @Autowired
     private TagParserService tagParserService;
@@ -56,18 +61,15 @@ public class TagController {
         return ResponseEntity.ok(new MessageResponse("Tag with id " + id + " deleted successfully"));
     }
 
-//    @GetMapping("/attributes")
-//    public List<Attribute> getAllAttributes(@RequestParam(required = false) Boolean isGlobal,
-//                                            @RequestParam(required = false) Boolean isEvent) {
-//        List<Attribute> attrsAll = new ArrayList<Attribute>();
-//        if (isEvent == null && isGlobal == null){
-//            attrsAll = entityService.attributeGetAll();
-//        }
-//        else {
-//            attrsAll = entityService.attributeGetAllWithFilter(isGlobal, isEvent);
-//        }
-//        return attrsAll;
-//    }
-
-
+    @GetMapping("/attributes")
+    public List<Attribute> getAllAttributes(@RequestParam(required = false) Boolean isGlobal, @RequestParam(required = false) Boolean isEvent) {
+        List<Attribute> attributes;
+        if (isEvent == null && isGlobal == null){
+            attributes = attributeRepository.findAll();
+        }
+        else {
+            attributes = attributeRepository.findByIsGlobalorIsevent(isGlobal, isEvent);
+        }
+        return attributes;
+    }
 }
